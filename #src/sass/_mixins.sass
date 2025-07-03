@@ -1,5 +1,5 @@
 /* MIXINS */
-=opacity($opacity:.5)
+@mixin opacity($opacity: .5)
   $freaking-ie: $opacity * 50
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=${freaking-ie})"
   filter: alpha(opacity=$freaking-ie)
