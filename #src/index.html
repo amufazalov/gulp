@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.min.css">
-    <title>Title</title>
-</head>
+
+@@include('includes/_head.html', { "title": "Главная" })
+
 <body>
-    <h1>Hello, World!</h1>
-
+  <div class="wrapper">
     @@include('includes/_header.html')
+    <main class="page">
+      <p>Some page content</p>
 
-    <main class="main">
-        <p>Some content</p>
+      <button class="btn">Click me</button>
+
     </main>
+    @@include('includes/_footer.html')
+  </div>
 
-    <script src="js/common.min.js"></script>
+
+
+
+  @@include('includes/_popup.html')
+  @@include('includes/_js.html')
 </body>
+
 </html>
