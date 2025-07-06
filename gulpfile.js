@@ -19,14 +19,14 @@ let path = {
         html:  [
             sourceFolder + "/*.html" , "!" + sourceFolder + "/_*.html"
         ],
-        css:   sourceFolder + "/sass/style.sass",
+        css:   sourceFolder + "/scss/style.scss",
         js:    sourceFolder + "/js/common.js",
         img:   sourceFolder + "/images/**/*.{jpg,jpeg,png,svg,gif,ico,webp}",
         fonts: sourceFolder + "/fonts/*.ttf"
     },
     watch: {
         html:  sourceFolder + "/**/*.html",
-        css:   sourceFolder + "/sass/**/*.sass",
+        css:   sourceFolder + "/scss/**/*.scss",
         js:    sourceFolder + "/js/**/*.js",
         img:   sourceFolder + "/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}"
     },
@@ -45,25 +45,12 @@ let { src, dest } = require('gulp'),
     rename = require("gulp-rename"),
     uglify = require("gulp-uglify-es").default,
     imagemin = require('gulp-imagemin'),
-    webp = require('gulp-webp');
-/**
- *  Конвертирует тег <img src=""> в
- *        <picture>
- *           <source srcset="img/image.webp" type="image/webp">
- *           <img src="img/image.jpg" alt="">
- *       </picture>
- * @type {function(*): *}
- */
-const webpHtml = require('gulp-webp-html');
-const webpCss = require('gulp-webp-css');
-
-const svgSprite = require('gulp-svg-sprite');
-
-const ttf2woff = require('gulp-ttf2woff');
-const ttf2woff2 = require('gulp-ttf2woff2');
-const fonter = require('gulp-fonter');
-
-
+    webp = require('gulp-webp'),
+    webpHtml = require('gulp-webp-html'),
+    svgSprite = require('gulp-svg-sprite'),
+    ttf2woff = require('gulp-ttf2woff'),
+    ttf2woff2 = require('gulp-ttf2woff2'),
+    fonter = require('gulp-fonter');
 
 function browserSync(params) {
     bSync.init({
@@ -75,7 +62,7 @@ function browserSync(params) {
     })
 }
 
-function html(){
+function html() {
     return src(path.src.html)
         .pipe(fileInclude())
         .pipe(webpHtml())
@@ -83,11 +70,11 @@ function html(){
         .pipe(bSync.stream())
 }
 
-function images(){
+function images() {
     return src(path.src.img)
         .pipe(
             webp({
-                quality: 70 //0 to 100
+                quality: 70
             })
         )
         .pipe(dest(path.build.img))
@@ -95,16 +82,16 @@ function images(){
         .pipe(
             imagemin({
                 progressive: true,
-                svgoPlugins: [{ removeViewBox: false}],
+                svgoPlugins: [{ removeViewBox: false }],
                 interlaced: true,
-                optimizationLevel: 3 //0 to 7
+                optimizationLevel: 3
             })
         )
         .pipe(dest(path.build.img))
         .pipe(bSync.stream())
 }
 
-function js(){
+function js() {
     return src(path.src.js)
         .pipe(fileInclude())
         .pipe(dest(path.build.js))
@@ -125,63 +112,59 @@ function css() {
         .pipe(
             sass({
                 outputStyle: "expanded"
-             }).on('error', sass.logError)
+            }).on('error', sass.logError)
         )
         .pipe(groupMedia())
-        .pipe(autoprefixer({
-            overrideBrowserslist: ['last 5 versions'],
-            cascade: true
-        }))
         .pipe(
-            webpCss()
+            autoprefixer({
+                overrideBrowserslist: ['last 5 versions'],
+                cascade: true
+            })
         )
-        .pipe(dest(path.build.css)) //выгрузка
+        .pipe(dest(path.build.css))
         .pipe(cleanCss())
         .pipe(
             rename({
                 extname: ".min.css"
             })
         )
-        .pipe(dest(path.build.css)) //выгрузка сжатого файла
+        .pipe(dest(path.build.css))
         .pipe(bSync.stream())
 }
 
-function fonts(){
+function fonts() {
     src(path.src.fonts)
         .pipe(ttf2woff())
-        .pipe(dest(path.build.fonts))
-    src(path.src.fonts)
-        .pipe(dest(path.build.fonts))
+        .pipe(dest(path.build.fonts));
     return src(path.src.fonts)
         .pipe(ttf2woff2())
-        .pipe(dest(path.build.fonts))
+        .pipe(dest(path.build.fonts));
 }
-// Команда для сбора всех svg иконок в 1 файл
-gulp.task('svgSprite', function (){
+
+gulp.task('svgSprite', function () {
     return gulp.src([sourceFolder + '/iconsprite/*.svg'])
         .pipe(svgSprite({
             mode: {
                 stack: {
-                    sprite: "../icons/icons.svg", //sprite file name
-                    // example: true  //выгрузка .html с примером
+                    sprite: "../icons/icons.svg",
                 }
             }
         }))
-})
-// Команда для преобразования шрифтов otf в ttf
-gulp.task('otf2ttf', function (){
+        .pipe(dest(path.build.img))
+});
+
+gulp.task('otf2ttf', function () {
     return gulp.src([sourceFolder + '/fonts/*.otf'])
         .pipe(fonter({
             formats: ['ttf']
         }))
-        .pipe(dest(sourceFolder + '/fonts/'))
-})
+        .pipe(dest(sourceFolder + '/fonts/'));
+});
 
 function fontsStyle() {
-
-    let file_content = fs.readFileSync(sourceFolder + '/sass/_fonts.sass');
+    let file_content = fs.readFileSync(sourceFolder + '/scss/_fonts.scss');
     if (file_content == '') {
-        fs.writeFile(sourceFolder + '/sass/_fonts.sass', '', cb);
+        fs.writeFile(sourceFolder + '/scss/_fonts.scss', '', cb);
         return fs.readdir(path.build.fonts, function (err, items) {
             if (items) {
                 let c_fontname;
@@ -189,7 +172,7 @@ function fontsStyle() {
                     let fontname = items[i].split('.');
                     fontname = fontname[0];
                     if (c_fontname != fontname) {
-                        fs.appendFile(sourceFolder + '/sass/_fonts.sass', '+font-face("' + fontname + '", "../fonts/' + fontname + '", 400)\r\n', cb);
+                        fs.appendFile(sourceFolder + '/scss/_fonts.scss', '@font-face {\n    font-family: "' + fontname + '";\n    src: url("../fonts/' + fontname + '.woff2") format("woff2"),\n         url("../fonts/' + fontname + '.woff") format("woff"),\n         url("../fonts/' + fontname + '.ttf") format("truetype");\n    font-weight: 400;\n    font-style: normal;\n}\n', cb);
                     }
                     c_fontname = fontname;
                 }
@@ -200,14 +183,14 @@ function fontsStyle() {
 
 function cb() { }
 
-function watchFiles(params){
-    gulp.watch([path.watch.html], html)
-    gulp.watch([path.watch.css], css)
-    gulp.watch([path.watch.js], js)
-    gulp.watch([path.watch.img], images)
+function watchFiles(params) {
+    gulp.watch([path.watch.html], html);
+    gulp.watch([path.watch.css], css);
+    gulp.watch([path.watch.js], js);
+    gulp.watch([path.watch.img], images);
 }
 
-function clean(params){
+function clean(params) {
     return del(path.clean);
 }
 
@@ -215,11 +198,11 @@ let build = gulp.series(clean, gulp.parallel(js, css, html, images, fonts), font
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.fontsStyle = fontsStyle;
-exports.images = images;
 exports.fonts = fonts;
-exports.js     = js;
-exports.css     = css;
-exports.html    = html;
-exports.build   = build;
-exports.watch   = watch;
+exports.images = images;
+exports.js = js;
+exports.css = css;
+exports.html = html;
+exports.build = build;
+exports.watch = watch;
 exports.default = watch;

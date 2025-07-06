@@ -24,7 +24,6 @@
     "gulp-ttf2woff2": "^4.0.1",
     "gulp-uglify-es": "^3.0.0",
     "gulp-webp": "^4.0.0",
-    "gulp-webp-css": "^1.0.0",
     "gulp-webp-html": "^1.0.2",
     "sass": "^1.37.5",
     "webp-converter": "^2.2.3"
@@ -33,7 +32,6 @@
     "gulp": "^4.0.2",
     "jquery": "^3.6.0",
     "magnific-popup": "^1.1.0",
-    "node-sass": "^8.0.0",
     "slick-carousel": "^1.8.1"
   },
   "overrides": {
