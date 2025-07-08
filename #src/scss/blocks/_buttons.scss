@@ -1,0 +1,19 @@
+@use '../helpers' as *;
+
+.btn {
+  background-color: #000;
+  color: #fff;
+  display: inline-flex;
+  justify-content: center;
+  padding: rem(18) rem(24);
+  border-radius: rem(10);
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
+
+  @include mobile {
+    padding: rem(12) rem(16);
+  }
+}
