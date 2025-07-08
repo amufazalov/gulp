@@ -1,0 +1,12 @@
+@use 'helpers' as *;
+
+p {
+  @include fluid-text(68, 16);
+
+  width: rem(100);
+  color: red;
+
+  @include mobile {
+    background-color: red;
+  }
+}

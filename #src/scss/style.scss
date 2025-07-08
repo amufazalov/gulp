@@ -1,4 +1,5 @@
-@use 'libs' as *;
-@use 'mixins' as mix;
-@use 'fonts' as *;
-@use 'buttons' as *;
+@use 'normalize';
+@use 'fonts';
+@use 'variables';
+@use 'utils';
+@use 'globals';

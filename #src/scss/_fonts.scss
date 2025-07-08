@@ -1,4 +1,4 @@
-@use 'mixins' as mix;
+@use 'helpers/mixins' as mix;
 
 @include mix.font-face("Lato-Black", "../fonts/Lato-Black", 400);
 @include mix.font-face("Lato-Bold", "../fonts/Lato-Bold", 400);
