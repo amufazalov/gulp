@@ -50,7 +50,8 @@ let { src, dest } = require('gulp'),
     svgSprite = require('gulp-svg-sprite'),
     ttf2woff = require('gulp-ttf2woff'),
     ttf2woff2 = require('gulp-ttf2woff2'),
-    fonter = require('gulp-fonter');
+    fonter = require('gulp-fonter'),
+    sourcemaps = require('gulp-sourcemaps');
 
 function browserSync(params) {
     bSync.init({
@@ -93,6 +94,7 @@ function images() {
 
 function js() {
     return src(path.src.js)
+        .pipe(sourcemaps.init())
         .pipe(fileInclude())
         .pipe(dest(path.build.js))
         .pipe(
@@ -103,12 +105,14 @@ function js() {
                 extname: ".min.js"
             })
         )
+        .pipe(sourcemaps.write('.'))
         .pipe(dest(path.build.js))
         .pipe(bSync.stream())
 }
 
 function css() {
     return src(path.src.css)
+        .pipe(sourcemaps.init())
         .pipe(
             sass({
                 outputStyle: "expanded"
@@ -121,6 +125,7 @@ function css() {
                 cascade: true
             })
         )
+        .pipe(sourcemaps.write('.'))
         .pipe(dest(path.build.css))
         .pipe(cleanCss())
         .pipe(
@@ -128,6 +133,7 @@ function css() {
                 extname: ".min.css"
             })
         )
+        .pipe(sourcemaps.write('.'))
         .pipe(dest(path.build.css))
         .pipe(bSync.stream())
 }

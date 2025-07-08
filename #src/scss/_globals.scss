@@ -1,12 +1,74 @@
 @use 'helpers' as *;
 
-p {
-  @include fluid-text(68, 16);
+body {
+  @include fluid-text(18, 14);
 
-  width: rem(100);
-  color: red;
+  color: var(--color-text-base);
+  font-family: var(--font-family-base);
+}
 
-  @include mobile {
-    background-color: red;
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  color: var(--color-text-base);
+  font-weight: 500;
+}
+
+h1,
+.h1 {
+  @include fluid-text(68, 48);
+}
+
+h2,
+.h2 {
+  @include fluid-text(48, 32);
+}
+
+h3,
+.h3 {}
+
+h4,
+.h4 {}
+
+h5,
+.h5 {}
+
+h6,
+.h6 {}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  color: inherit;
+
+  @include hover {
+    color: blue;
   }
+
+  &[class] {
+    text-decoration: none;
+  }
+}
+
+:focus-visible {
+  outline: rem(2) dashed var(--color-primary);
+  outline-offset: rem(4);
+  transition-duration: 0s !important;
 }
