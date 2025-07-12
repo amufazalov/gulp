@@ -56,10 +56,16 @@ let { src, dest } = require('gulp'),
 function browserSync(params) {
     bSync.init({
         server: {
-            baseDir: path.clean
+            baseDir: "./" + projectFolder
         },
         port: 3000,
-        notify: false
+        notify: false,
+        files: [
+            projectFolder + '/**/*.html',
+            projectFolder + '/css/**/*.css',
+            projectFolder + '/js/**/*.js',
+            projectFolder + '/images/**/*'
+        ]
     })
 }
 
