@@ -5,6 +5,9 @@ body {
 
   color: var(--color-text-base);
   font-family: var(--font-family-base);
+  background-color: gray;
+  margin-inline: auto;
+  max-width: rem(1440);
 }
 
 h1,
