@@ -1,0 +1,186 @@
+@use '../helpers' as *;
+
+.header {
+    background: #fff;
+    box-shadow: 0 rem(2) rem(10) rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
+
+    &__container {
+        margin: 0 auto;
+        padding: 0 rem(20);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: rem(70);
+
+        @include mobile {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-duration);
+        }
+    }
+
+    &__logo h1 {
+        @include mobile {
+            font-size: rem(20);
+            transition: var(--transition-duration);
+            text-wrap: nowrap;
+        }
+    }
+
+    &__nav_wrapper {
+        width: 100%;
+        position: relative;
+    }
+
+    @include mobile {
+        &__nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: rem(300);
+            height: 100vh;
+            background: #fff;
+            box-shadow: rem(-5) 0 rem(15) rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            margin: 0;
+
+            &.is-open {
+                right: 0;
+            }
+        }
+    }
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: 200px;
+        height: rem(2);
+        background-color: #333;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &::before {
+        left: 0;
+    }
+
+    &::after {
+        right: 0;
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
+        gap: rem(40);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item {
+        position: relative;
+    }
+
+    &__link {
+        display: block;
+        padding: rem(10) 0;
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: rem(14);
+        letter-spacing: rem(0.5);
+        transition: color 0.3s ease;
+        position: relative;
+
+        &:hover {
+            color: #007bff;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: rem(2);
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+    }
+}
+
+// Планшеты и мобильные устройства
+@include mobile {
+    .header {}
+
+    .nav {
+        &__list {
+            flex-direction: column;
+            gap: 0;
+            padding: rem(80) rem(20) rem(20);
+            align-items: stretch;
+        }
+
+        &__item {
+            border-bottom: 1px solid #eee;
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        &__link {
+            padding: rem(20) 0;
+            font-size: rem(16);
+            border-bottom: none;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+}
+
+// Убираем overlay полностью
+/* 
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-overlay {
+    display: none;
+  }
+}
+*/
