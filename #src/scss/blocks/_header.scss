@@ -65,7 +65,7 @@
     &::after {
         content: '';
         position: absolute;
-        width: 200px;
+        width: var(--nav-line-width, 200px); // Используем CSS-переменную
         height: rem(2);
         background-color: #333;
         border-radius: 50%;
@@ -128,9 +128,12 @@
 
 // Планшеты и мобильные устройства
 @include mobile {
-    .header {}
-
     .nav {
+        &::before,
+        &::after {
+            content: none;
+        }
+
         &__list {
             flex-direction: column;
             gap: 0;

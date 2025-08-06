@@ -27,6 +27,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const nav = document.getElementById('nav');
     const body = document.body;
     
+    // Функция для расчета ширины полосок навигации
+    function calculateNavLineWidth() {
+        // Проверяем, что мы не на мобильной версии
+        if (window.innerWidth <= 767) {
+            return;
+        }
+        
+        const navWrapper = document.querySelector('.header__nav_wrapper');
+        const navList = document.querySelector('.nav__list');
+        
+        if (!navWrapper || !navList) {
+            return;
+        }
+        
+        // Получаем ширину контейнера навигации
+        const wrapperWidth = navWrapper.offsetWidth;
+        
+        // Получаем ширину списка навигации
+        const listWidth = navList.offsetWidth;
+        
+        // Вычисляем свободное пространство с каждой стороны
+        const freeSpace = (wrapperWidth - listWidth) / 2;
+        
+        // Устанавливаем ширину полосок (немного меньше свободного пространства для отступов)
+        const lineWidth = Math.max(0, freeSpace - 20); // 20px отступ от навигации
+        
+        // Применяем вычисленную ширину через CSS-переменную
+        nav.style.setProperty('--nav-line-width', `${lineWidth}px`);
+    }
+    
+    // Вызываем функцию при загрузке страницы
+    calculateNavLineWidth();
+    
+    // Пересчитываем при изменении размера окна
+    window.addEventListener('resize', calculateNavLineWidth);
+    
     // Убираем создание overlay
     // const overlay = document.createElement('div');
     // overlay.className = 'nav-overlay';
@@ -83,5 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.innerWidth > 767 && nav.classList.contains('is-open')) {
             closeMenu();
         }
+        // Пересчитываем полоски при изменении размера
+        calculateNavLineWidth();
     });
 });
