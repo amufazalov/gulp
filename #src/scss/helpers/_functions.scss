@@ -13,7 +13,7 @@
 
 /* fluid - функция для перевода пикселей в rem */
 @function fluid($max: 48, $min: 16) {
-  $maxViewportWidth: 1400;
+  $maxViewportWidth: 1920;
   $minViewportWidth: 360;
 
   $maxSize: math.div($max, 16);

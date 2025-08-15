@@ -1,18 +1,18 @@
 @use 'helpers' as *;
 
 :root {
-  --font-family-base: 'Inter', sans-serif;
+  --font-family-base: 'SenRegular', sans-serif;
 
   --color-primary: #000;
   --color-secondary: #fff;
 
-  --container-width: #{rem(1200)};
-  --container-padding-x: #{rem(15)};
+  --container-width: #{rem(1920)};
+  --container-padding-x: #{rem(20)};
 
   --transition-duration: 0.2s;
 
   @include laptop {
     --container-width: #{rem(1200)};
-    --container-padding-x: #{rem(15)};
+    --container-padding-x: #{rem(20)};
   }
 }

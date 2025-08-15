@@ -1,0 +1,35 @@
+@use '../helpers' as *;
+
+.footer {
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__info {
+        display: flex;
+        gap: rem(40);
+        &-link {
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: currentColor;
+                transition: width 0.3s ease;
+            }
+            
+            &:hover {
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

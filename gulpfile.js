@@ -145,9 +145,14 @@ function css() {
 }
 
 function fonts() {
+    // Копируем исходные .ttf файлы
+    src(path.src.fonts)
+        .pipe(dest(path.build.fonts));
+    // Создаем .woff версии
     src(path.src.fonts)
         .pipe(ttf2woff())
         .pipe(dest(path.build.fonts));
+    // Создаем .woff2 версии
     return src(path.src.fonts)
         .pipe(ttf2woff2())
         .pipe(dest(path.build.fonts));

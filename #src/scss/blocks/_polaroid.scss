@@ -1,0 +1,256 @@
+// Поляроид галерея
+// Все параметры настраиваются через JavaScript переменные в классе PolaroidGallery
+// Пример изменения настроек:
+// window.polaroidGallery.updateConfig({ overlapPercent: 20 });
+.polaroid-gallery {
+  // background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.polaroid-container {
+  position: relative;
+  width: 100%;
+  max-width: var(--polaroid-container-max-width, 1200px);
+  height: var(--polaroid-container-height, 700px);
+  perspective: 1000px;
+}
+
+.polaroid {
+  position: absolute;
+  transition: all var(--polaroid-slide-speed, 800ms) cubic-bezier(0.4, 0.0, 0.2, 1);
+  cursor: pointer;
+  
+  &--left {
+    left: var(--polaroid-left-position-left, 50px);
+    top: var(--polaroid-left-position-top, 0px);
+    width: var(--polaroid-left-width, 580px);
+    height: var(--polaroid-left-height, 686px);
+    transform: rotate(var(--polaroid-left-rotation, -8deg));
+    z-index: 1;
+  }
+  
+  &--right {
+    right: var(--polaroid-right-position-right, 137px);
+    top: var(--polaroid-right-position-top, 20px);
+    width: var(--polaroid-right-width, 620px);
+    height: var(--polaroid-right-height, 720px);
+    transform: rotate(var(--polaroid-right-rotation, 6deg));
+    z-index: 2;
+  }
+  
+  &--moving-down {
+    transform: translateY(var(--polaroid-slide-down-distance, 800px)) rotate(var(--polaroid-left-rotation, -8deg));
+    opacity: 0;
+  }
+  
+  &--transitioning-to-left {
+    left: var(--polaroid-left-position-left, 50px) !important;
+    right: auto !important;
+    top: var(--polaroid-left-position-top, 0px) !important;
+    width: var(--polaroid-left-width, 580px) !important;
+    height: var(--polaroid-left-height, 686px) !important;
+    transform: rotate(var(--polaroid-left-rotation, -8deg)) !important;
+    z-index: 1 !important;
+    
+    .polaroid__image {
+      height: var(--polaroid-left-image-height, 566px) !important;
+    }
+  }
+  
+  &--appearing-right {
+    right: calc(-1 * var(--polaroid-slide-in-distance, 700px));
+    top: var(--polaroid-right-position-top, 20px);
+    width: var(--polaroid-right-width, 620px);
+    height: var(--polaroid-right-height, 720px);
+    transform: rotate(var(--polaroid-right-rotation, 6deg)) translateX(var(--polaroid-slide-in-distance, 700px));
+    opacity: 0;
+    z-index: 2;
+    
+    .polaroid__image {
+      height: var(--polaroid-right-image-height, 620px);
+    }
+    
+    &.animate-in {
+      right: var(--polaroid-right-position-right, 137px);
+      opacity: 1;
+      transform: rotate(var(--polaroid-right-rotation, 6deg)) translateX(0);
+    }
+  }
+}
+
+.polaroid__frame {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  padding: 50px 50px 100px 50px;
+  position: relative;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+      0 8px 16px rgba(0, 0, 0, 0.15),
+      0 12px 40px rgba(0, 0, 0, 0.2),
+      0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.polaroid__image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1px;
+  background: #f8f8f8;
+}
+
+.polaroid--left .polaroid__image {
+  height: var(--polaroid-left-image-height, 566px);
+}
+
+.polaroid--right .polaroid__image {
+  height: var(--polaroid-right-image-height, 620px);
+}
+
+.polaroid__caption {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 24px;
+  color: #333;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+// Анимации
+@keyframes slideDown {
+  from {
+    transform: translateY(0) rotate(var(--polaroid-left-rotation, -8deg));
+    opacity: 1;
+  }
+  to {
+    transform: translateY(var(--polaroid-slide-down-distance, 800px)) rotate(var(--polaroid-left-rotation, -8deg));
+    opacity: 0;
+  }
+}
+
+@keyframes moveToLeft {
+  from {
+    right: var(--polaroid-right-position-right, 137px);
+    top: var(--polaroid-right-position-top, 20px);
+    width: var(--polaroid-right-width, 620px);
+    height: var(--polaroid-right-height, 720px);
+    transform: rotate(var(--polaroid-right-rotation, 6deg));
+    z-index: 2;
+  }
+  to {
+    left: var(--polaroid-left-position-left, 50px);
+    top: var(--polaroid-left-position-top, 0px);
+    right: auto;
+    width: var(--polaroid-left-width, 580px);
+    height: var(--polaroid-left-height, 686px);
+    transform: rotate(var(--polaroid-left-rotation, -8deg));
+    z-index: 1;
+  }
+}
+
+@keyframes appearFromRight {
+  from {
+    right: calc(-1 * var(--polaroid-slide-in-distance, 700px));
+    opacity: 0;
+    transform: rotate(var(--polaroid-right-rotation, 6deg)) translateX(var(--polaroid-slide-in-distance, 700px));
+  }
+  to {
+    right: var(--polaroid-right-position-right, 137px);
+    opacity: 1;
+    transform: rotate(var(--polaroid-right-rotation, 6deg)) translateX(0);
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .polaroid-gallery {
+    padding: 40px 15px;
+  }
+  
+  .polaroid-container {
+    max-width: 100%;
+    height: 450px; // Увеличиваем из-за нового расположения
+  }
+  
+  .polaroid {
+    &--left {
+      left: 30px;
+      top: 80px; // Адаптивное позиционирование ниже
+      width: 200px;
+      height: 250px;
+    }
+    
+    &--right {
+      right: 60px; // Адаптивное наложение
+      top: 20px;
+      width: 220px;
+      height: 280px;
+    }
+  }
+  
+  .polaroid__frame {
+    padding: 15px 15px 45px 15px;
+  }
+  
+  .polaroid--left .polaroid__image {
+    height: 160px;
+  }
+  
+  .polaroid--right .polaroid__image {
+    height: 180px;
+  }
+  
+  .polaroid__caption {
+    font-size: 12px;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .polaroid-container {
+    height: 380px; // Увеличиваем контейнер для мобильных
+  }
+  
+  .polaroid {
+    &--left {
+      left: 20px;
+      top: 60px; // Позиционируем ниже на мобильных
+      width: 160px;
+      height: 210px;
+    }
+    
+    &--right {
+      right: 50px; // Увеличиваем наложение для мобильных
+      top: 15px;
+      width: 180px;
+      height: 230px;
+    }
+  }
+  
+  .polaroid--left .polaroid__image {
+    height: 120px;
+  }
+  
+  .polaroid--right .polaroid__image {
+    height: 140px;
+  }
+}
+

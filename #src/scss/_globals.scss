@@ -1,10 +1,15 @@
 @use 'helpers' as *;
 
 body {
-  @include fluid-text(18, 14);
+  @include fluid-text(28, 16);
 
   color: var(--color-text-base);
   font-family: var(--font-family-base);
+  background: var(--color-secondary);
+  background-image: url('../images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 h1,
@@ -59,7 +64,7 @@ a {
   color: inherit;
 
   @include hover {
-    color: blue;
+    color: var(--color-primary);
   }
 
   &[class] {

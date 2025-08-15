@@ -1,14 +1,11 @@
 @use '../helpers' as *;
 
 .header {
-    background: #fff;
-    box-shadow: 0 rem(2) rem(10) rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 100;
 
     &__container {
-        margin: 0 auto;
-        padding: 0 rem(20);
+        margin-inline: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -24,6 +21,13 @@
     }
 
     &__logo h1 {
+        font-family: 'GravitasOne', sans-serif;
+        font-size: rem(82);
+        line-height: rem(100);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: 0;
+
         @include mobile {
             font-size: rem(20);
             transition: var(--transition-duration);
@@ -33,6 +37,7 @@
 
     &__nav_wrapper {
         width: 100%;
+        margin-top: rem(26);
         position: relative;
     }
 
@@ -43,7 +48,6 @@
             right: -100%;
             width: rem(300);
             height: 100vh;
-            background: #fff;
             box-shadow: rem(-5) 0 rem(15) rgba(0, 0, 0, 0.1);
             transition: right 0.3s ease;
             z-index: 999;
@@ -67,7 +71,7 @@
         position: absolute;
         width: var(--nav-line-width, 200px); // Используем CSS-переменную
         height: rem(2);
-        background-color: #333;
+        background-color: var(--color-primary);
         border-radius: 50%;
         top: 50%;
         transform: translateY(-50%);
@@ -84,7 +88,7 @@
     &__list {
         display: flex;
         align-items: center;
-        gap: rem(40);
+        gap: rem(32);
         margin: 0;
         padding: 0;
         list-style: none;
@@ -97,16 +101,17 @@
     &__link {
         display: block;
         padding: rem(10) 0;
-        color: #333;
+        color: var(--color-primary);
         text-decoration: none;
-        font-weight: 500;
-        font-size: rem(14);
+        font-weight: 400;
+        font-family: 'SenRegular', sans-serif;
+        font-size: rem(24);
         letter-spacing: rem(0.5);
         transition: color 0.3s ease;
         position: relative;
 
         &:hover {
-            color: #007bff;
+            color: var(--color-primary);
         }
 
         &::after {
