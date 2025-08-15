@@ -1,125 +1,223 @@
 // Можно использовать шаблонизатор для подключения js
 // @@include('includes/alert.js')
 
-// JS-функция определения поддержки Web
-// Если есть поддержка, то добавляет к body класс webp
-// Костыль для работы с gulp-webp-css
-function testWebP(callback) {
-
-    var webP = new Image();
-    webP.onload = webP.onerror = function () {
-        callback(webP.height == 2);
-    };
-    webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
-}
-testWebP(function (support) {
-
-    if (support == true) {
-        document.querySelector('body').classList.add('webp');
-    }else{
-        document.querySelector('body').classList.add('no-webp');
+/**
+ * Класс для определения поддержки WebP
+ */
+class WebPDetector {
+    constructor() {
+        this.detectWebPSupport();
     }
-});
 
-// Бургер меню
-document.addEventListener('DOMContentLoaded', function() {
-    const burgerButton = document.getElementById('burgerButton');
-    const nav = document.getElementById('nav');
-    const body = document.body;
-    
-    // Функция для расчета ширины полосок навигации
-    function calculateNavLineWidth() {
-        // Проверяем, что мы не на мобильной версии
-        if (window.innerWidth <= 767) {
+    /**
+     * Определяет поддержку WebP и добавляет соответствующий класс к body
+     */
+    detectWebPSupport() {
+        const webP = new Image();
+        webP.onload = webP.onerror = () => {
+            const hasSupport = webP.height === 2;
+            this.addWebPClass(hasSupport);
+        };
+        webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
+    }
+
+    /**
+     * Добавляет класс webp или no-webp к body
+     * @param {boolean} hasSupport - поддерживается ли WebP
+     */
+    addWebPClass(hasSupport) {
+        const bodyClass = hasSupport ? 'webp' : 'no-webp';
+        document.querySelector('body').classList.add(bodyClass);
+    }
+}
+
+/**
+ * Класс для расчета ширины полосок навигации
+ */
+class NavigationLineCalculator {
+    constructor() {
+        this.mobileBreakpoint = 767;
+        this.lineOffset = 20; // отступ от навигации
+    }
+
+    /**
+     * Рассчитывает и устанавливает ширину полосок навигации
+     */
+    calculateNavLineWidth() {
+        if (this.isMobileView()) {
             return;
         }
-        
+
         const navWrapper = document.querySelector('.header__nav_wrapper');
         const navList = document.querySelector('.nav__list');
-        
-        if (!navWrapper || !navList) {
+        const nav = document.getElementById('nav');
+
+        if (!this.areElementsExist(navWrapper, navList, nav)) {
             return;
         }
-        
-        // Получаем ширину контейнера навигации
-        const wrapperWidth = navWrapper.offsetWidth;
-        
-        // Получаем ширину списка навигации
-        const listWidth = navList.offsetWidth;
-        
-        // Вычисляем свободное пространство с каждой стороны
-        const freeSpace = (wrapperWidth - listWidth) / 2;
-        
-        // Устанавливаем ширину полосок (немного меньше свободного пространства для отступов)
-        const lineWidth = Math.max(0, freeSpace - 20); // 20px отступ от навигации
-        
-        // Применяем вычисленную ширину через CSS-переменную
+
+        const lineWidth = this.computeLineWidth(navWrapper, navList);
         nav.style.setProperty('--nav-line-width', `${lineWidth}px`);
     }
-    
-    // Вызываем функцию при загрузке страницы
-    calculateNavLineWidth();
-    
-    // Пересчитываем при изменении размера окна
-    window.addEventListener('resize', calculateNavLineWidth);
-    
-    // Убираем создание overlay
-    // const overlay = document.createElement('div');
-    // overlay.className = 'nav-overlay';
-    // body.appendChild(overlay);
-    
-    // Функция открытия/закрытия меню
-    function toggleMenu() {
-        const isOpen = nav.classList.contains('is-open');
+
+    /**
+     * Проверяет, является ли текущий вид мобильным
+     * @returns {boolean}
+     */
+    isMobileView() {
+        return window.innerWidth <= this.mobileBreakpoint;
+    }
+
+    /**
+     * Проверяет существование всех необходимых элементов
+     * @param {...Element} elements - элементы для проверки
+     * @returns {boolean}
+     */
+    areElementsExist(...elements) {
+        return elements.every(element => element !== null);
+    }
+
+    /**
+     * Вычисляет ширину полоски
+     * @param {Element} navWrapper - контейнер навигации
+     * @param {Element} navList - список навигации
+     * @returns {number}
+     */
+    computeLineWidth(navWrapper, navList) {
+        const wrapperWidth = navWrapper.offsetWidth;
+        const listWidth = navList.offsetWidth;
+        const freeSpace = (wrapperWidth - listWidth) / 2;
+        return Math.max(0, freeSpace - this.lineOffset);
+    }
+}
+
+/**
+ * Класс для управления бургер-меню
+ */
+class BurgerMenu {
+    constructor() {
+        this.burgerButton = document.getElementById('burgerButton');
+        this.nav = document.getElementById('nav');
+        this.body = document.body;
+        this.mobileBreakpoint = 767;
         
-        if (isOpen) {
-            closeMenu();
+        this.navigationCalculator = new NavigationLineCalculator();
+        
+        this.init();
+    }
+
+    /**
+     * Инициализация бургер-меню
+     */
+    init() {
+        if (!this.areRequiredElementsExist()) {
+            console.warn('Необходимые элементы бургер-меню не найдены');
+            return;
+        }
+
+        this.bindEvents();
+        this.navigationCalculator.calculateNavLineWidth();
+    }
+
+    /**
+     * Проверяет существование необходимых элементов
+     * @returns {boolean}
+     */
+    areRequiredElementsExist() {
+        return this.burgerButton && this.nav && this.body;
+    }
+
+    /**
+     * Привязывает обработчики событий
+     */
+    bindEvents() {
+        this.burgerButton.addEventListener('click', () => this.toggleMenu());
+        this.bindNavigationLinks();
+        this.bindKeyboardEvents();
+        this.bindResizeEvents();
+    }
+
+    /**
+     * Привязывает события к ссылкам навигации
+     */
+    bindNavigationLinks() {
+        const navLinks = this.nav.querySelectorAll('.nav__link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => this.closeMenu());
+        });
+    }
+
+    /**
+     * Привязывает события клавиатуры
+     */
+    bindKeyboardEvents() {
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && this.isMenuOpen()) {
+                this.closeMenu();
+            }
+        });
+    }
+
+    /**
+     * Привязывает события изменения размера окна
+     */
+    bindResizeEvents() {
+        window.addEventListener('resize', () => {
+            if (this.shouldCloseMenuOnResize()) {
+                this.closeMenu();
+            }
+            this.navigationCalculator.calculateNavLineWidth();
+        });
+    }
+
+    /**
+     * Определяет, нужно ли закрыть меню при изменении размера
+     * @returns {boolean}
+     */
+    shouldCloseMenuOnResize() {
+        return window.innerWidth > this.mobileBreakpoint && this.isMenuOpen();
+    }
+
+    /**
+     * Переключает состояние меню
+     */
+    toggleMenu() {
+        if (this.isMenuOpen()) {
+            this.closeMenu();
         } else {
-            openMenu();
+            this.openMenu();
         }
     }
-    
-    // Функция открытия меню
-    function openMenu() {
-        nav.classList.add('is-open');
-        burgerButton.classList.add('is-active');
-        // overlay.classList.add('is-open');
-        body.style.overflow = 'hidden'; // Блокируем скролл
+
+    /**
+     * Открывает меню
+     */
+    openMenu() {
+        this.nav.classList.add('is-open');
+        this.burgerButton.classList.add('is-active');
+        this.body.style.overflow = 'hidden';
     }
-    
-    // Функция закрытия меню
-    function closeMenu() {
-        nav.classList.remove('is-open');
-        burgerButton.classList.remove('is-active');
-        // overlay.classList.remove('is-open');
-        body.style.overflow = ''; // Возвращаем скролл
+
+    /**
+     * Закрывает меню
+     */
+    closeMenu() {
+        this.nav.classList.remove('is-open');
+        this.burgerButton.classList.remove('is-active');
+        this.body.style.overflow = '';
     }
-    
-    // Обработчик клика по бургер кнопке
-    burgerButton.addEventListener('click', toggleMenu);
-    
-    // Убираем обработчик клика по overlay
-    // overlay.addEventListener('click', closeMenu);
-    
-    // Закрытие меню при клике на ссылку
-    const navLinks = nav.querySelectorAll('.nav__link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-    
-    // Закрытие меню при нажатии Escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-            closeMenu();
-        }
-    });
-    
-    // Закрытие меню при изменении размера экрана
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 767 && nav.classList.contains('is-open')) {
-            closeMenu();
-        }
-        // Пересчитываем полоски при изменении размера
-        calculateNavLineWidth();
-    });
+
+    /**
+     * Проверяет, открыто ли меню
+     * @returns {boolean}
+     */
+    isMenuOpen() {
+        return this.nav.classList.contains('is-open');
+    }
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    new WebPDetector();
+    new BurgerMenu();
 });
