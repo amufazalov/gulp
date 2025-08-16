@@ -1,7 +1,12 @@
 @use '../helpers' as *;
 
-.footer {
+.footer { 
+    
     &__content {
+
+        @include fluid-text(24, 16);
+        @include fluid-line-height(30, 16);
+
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -12,7 +17,7 @@
         &-link {
             text-decoration: none;
             position: relative;
-            transition: color 0.3s ease;
+            transition: var(--transition-duration);
             
             &::after {
                 content: '';
@@ -22,7 +27,7 @@
                 width: 0;
                 height: 2px;
                 background-color: currentColor;
-                transition: width 0.3s ease;
+                transition: var(--transition-duration);
             }
             
             &:hover {

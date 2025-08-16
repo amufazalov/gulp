@@ -1,7 +1,7 @@
 @use 'helpers' as *;
 
 body {
-  @include fluid-text(28, 16);
+  @include fluid-text(24, 16);
 
   color: var(--color-text-base);
   font-family: var(--font-family-base);

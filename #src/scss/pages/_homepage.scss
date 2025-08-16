@@ -1,5 +1,60 @@
 @use '../helpers' as *;
 
-.wrapper {
-    padding: rem(80) rem(20) rem(20) rem(20);
+.wrapper.homepage {
+    padding: rem(56) rem(20) rem(15) rem(20);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.hero {
+
+    &__container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: rem(48);
+    }
+
+    &__polaroid {
+        margin-top: rem(50);
+    }
+
+    &__title {
+        h1 {
+            @include fluid-text(65, 28);
+            @include fluid-line-height(65, 28);
+
+            font-family: 'SenBold', sans-serif;
+            font-weight: 700;
+            margin: 0
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        gap: rem(24);
+    }
+
+    &__social {
+        display: flex;
+        gap: rem(12);
+    }
+    &__social-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__social-link {
+        display: flex;
+    }
+
 }

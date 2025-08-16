@@ -21,11 +21,13 @@
     }
 
     &__logo h1 {
+        @include fluid-text(82, 16);
+        @include fluid-line-height(100, 50);
+
         font-family: 'GravitasOne', sans-serif;
-        font-size: rem(82);
-        line-height: rem(100);
+        //line-height: rem(100);
         font-weight: 400;
-        line-height: 1;
+        //line-height: 1;
         letter-spacing: 0;
 
         @include mobile {
@@ -37,7 +39,7 @@
 
     &__nav_wrapper {
         width: 100%;
-        margin-top: rem(26);
+        margin-top: rem(10);
         position: relative;
     }
 
@@ -105,9 +107,9 @@
         text-decoration: none;
         font-weight: 400;
         font-family: 'SenRegular', sans-serif;
-        font-size: rem(24);
+        font-size: fluid-text(24, 16);
         letter-spacing: rem(0.5);
-        transition: color 0.3s ease;
+        transition: var(--transition-duration);
         position: relative;
 
         &:hover {
@@ -121,8 +123,8 @@
             left: 0;
             width: 0;
             height: rem(2);
-            background: #007bff;
-            transition: width 0.3s ease;
+            background: var(--color-primary);
+            transition: var(--transition-duration);
         }
 
         &:hover::after {

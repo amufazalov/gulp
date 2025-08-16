@@ -1,0 +1,12 @@
+@use '../helpers' as *;
+
+.hero__social-icon {
+    width: rem(49);
+    height: rem(49);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
