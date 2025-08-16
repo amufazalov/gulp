@@ -6,14 +6,25 @@
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+
+    @include mobile {
+        padding: rem(20)
+    }
 }
 
 .hero {
 
+    @include mobile {
+        margin-top: rem(32);
+    }
+
     &__container {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        
+
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
     }
 
     &__content {
@@ -36,8 +47,15 @@
 
             font-family: 'SenBold', sans-serif;
             font-weight: 700;
-            margin: 0
+            margin: 0;
+
+            @include mobile {
+                font-size: rem(48);
+                line-height: rem(48);
+                max-width: rem(483);
+            }
         }
+
     }
 
     &__buttons {

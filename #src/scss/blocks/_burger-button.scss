@@ -4,9 +4,9 @@
   display: none;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
+  align-items: left;
+  width: rem(52);
+  height: rem(52);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -15,19 +15,28 @@
   position: relative;
 
   &__line {
-    width: 25px;
-    height: 3px;
-    background: #333;
-    margin: 2px 0;
+    width: rem(34);
+    height: rem(2);
+    border-radius: rem(2);
+    background: var(--color-primary);
+    margin: 5px 0;
     transition: all 0.3s ease;
     transform-origin: center;
+    &:first-of-type {
+      width: rem(28);
+    }
+    &:last-of-type {
+      width: rem(22);
+    }
   }
 
   // Анимация при открытии
   &.is-active {
     .burger-button__line {
-      &:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
+      width: rem(34);
+      &:first-of-type {
+        width: rem(34);
+        transform: rotate(45deg) translate(rem(8), rem(8));
       }
 
       &:nth-child(2) {
@@ -35,15 +44,16 @@
         transform: scale(0);
       }
 
-      &:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
+      &:last-of-type {
+        width: rem(34);
+        transform: rotate(-45deg) translate(rem(8), rem(-8));
       }
     }
   }
 
   &:hover {
     .burger-button__line {
-      background: #007bff;
+      background: var(--color-primary);
     }
   }
 }

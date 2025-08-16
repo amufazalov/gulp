@@ -36,7 +36,7 @@ class WebPDetector {
  */
 class NavigationLineCalculator {
     constructor() {
-        this.mobileBreakpoint = 767;
+        this.mobileBreakpoint = 768.98; // Исправлено: приведено в соответствие с SCSS
         this.lineOffset = 20; // отступ от навигации
     }
 
@@ -50,7 +50,7 @@ class NavigationLineCalculator {
 
         const navWrapper = document.querySelector('.header__nav_wrapper');
         const navList = document.querySelector('.nav__list');
-        const nav = document.getElementById('nav');
+        const nav = document.querySelector('.header__nav'); // Исправлено: используем класс вместо id
 
         if (!this.areElementsExist(navWrapper, navList, nav)) {
             return;
@@ -97,9 +97,9 @@ class NavigationLineCalculator {
 class BurgerMenu {
     constructor() {
         this.burgerButton = document.getElementById('burgerButton');
-        this.nav = document.getElementById('nav');
+        this.nav = document.querySelector('.header__nav'); // Исправлено: используем класс вместо id
         this.body = document.body;
-        this.mobileBreakpoint = 767;
+        this.mobileBreakpoint = 768.98; // Исправлено: приведено в соответствие с SCSS
         
         this.navigationCalculator = new NavigationLineCalculator();
         
