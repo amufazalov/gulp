@@ -222,5 +222,5 @@ document.addEventListener('DOMContentLoaded', function() {
     new BurgerMenu();
     
     // Инициализируем поляроид галерею и сохраняем ссылку для возможности изменения настроек
-    window.polaroidGallery = new PolaroidGallery();
+    // window.polaroidGallery = new PolaroidGallery();
 });

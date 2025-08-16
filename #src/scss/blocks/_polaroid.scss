@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: visible;
   }
   
   #gallery figure {
@@ -15,29 +17,35 @@
     position: relative;
     background-color: #f3f3f3;
     text-align: center;
-    font-size: 15px;
     padding: rem(24);
     margin: rem(24);
     box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-width: none;
+    }
   }
   
   figure.pic1 {
-    -webkit-transform : rotate(-10deg);
+    transform : rotate(-8deg);
     z-index: 1;
-    top: rem(90);
+    top: rem(80);
     left: rem(210);
     width: rem(518);
   }
   
   figure.pic2 {
-    -webkit-transform : rotate(6deg);
+    transform : rotate(6deg);
     z-index: 2;
     right: rem(-110);
     width: rem(560);
   }
   
   figure.pic3 {
-    -webkit-transform : rotate(-25deg);
+    transform : rotate(-25deg);
     z-index: 1;
     display: none;
   } 
