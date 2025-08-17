@@ -14,8 +14,11 @@
     @include mobile {
       order: 2;
       margin-top: rem(48);
-      height: rem(300); // Фиксированная высота для мобильных
-      overflow: hidden; // Предотвращаем выход за границы
+      height: rem(350); // Увеличенная высота для перекрывающихся элементов
+      overflow: visible; // Разрешаем видимость за границами
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .hero__polaroid-inner {
@@ -24,11 +27,7 @@
       height: 100%;
 
       @include mobile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: rem(20);
-        height: auto;
+        position: relative;
       }
     }
 
@@ -39,20 +38,7 @@
       -webkit-backface-visibility: hidden;
 
       @include mobile {
-        position: relative;
-        left: auto !important;
-        top: auto !important;
-        transform: none !important;
-        margin: 0 auto;
-        width: fit-content;
-        
-        &:nth-child(1) {
-          transform: rotate(-3deg);
-        }
-        
-        &:nth-child(2) {
-          transform: rotate(3deg);
-        }
+        padding: rem(15);
       }
 
       &:nth-child(1) {
@@ -68,9 +54,13 @@
           @include tablet {
             max-width: rem(340);
           }
-          @include mobile {
-            max-width: rem(280);
-          }
+        }
+
+        @include mobile {
+          left: 5%;
+          top: rem(20);
+          transform: rotate(-12deg);
+          z-index: 1;
         }
       }
 
@@ -87,9 +77,12 @@
           @include tablet {
             max-width: rem(360);
           }
-          @include mobile {
-            max-width: rem(300);
-          }
+        }
+
+        @include mobile {
+          left: 44%;
+          top: -20%;
+          z-index: 2;
         }
       }
 
@@ -99,7 +92,7 @@
         transform: rotate(5deg);
         
         @include mobile {
-          display: none; // Скрываем третий элемент на мобильных если он есть
+          display: none; // Скрываем третий элемент на мобильных
         }
       }
     }
