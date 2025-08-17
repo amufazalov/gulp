@@ -11,8 +11,8 @@
 
   --transition-duration: 0.2s;
 
-  @include laptop {
-    --container-width: #{rem(1200)};
-    --container-padding-x: #{rem(20)};
-  }
+  // @include laptop {
+  //   --container-width: #{rem(1200)};
+  //   --container-padding-x: #{rem(20)};
+  // }
 }

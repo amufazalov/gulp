@@ -30,7 +30,7 @@
 
     &__content {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 2.5fr;
         gap: rem(48);
         align-items: center;
         
@@ -124,7 +124,7 @@
     &__polaroid {
         justify-self: center;
         align-self: center;
-        margin-top: rem(34);
+        margin-top: rem(20);
         overflow: visible;
         position: relative;
         

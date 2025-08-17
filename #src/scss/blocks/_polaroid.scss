@@ -19,55 +19,26 @@
   }
   
   #gallery figure {
-    float: left;
+    float: right;
     position: relative;
     background-color: #f3f3f3;
     text-align: center;
     padding: rem(24);
     margin: rem(24);
     box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
-
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
-      max-width: none;
-    }
   }
   
   figure.pic1 {
     transform : rotate(-8deg);
     z-index: 1;
     top: rem(80);
-    left: rem(210);
-    width: rem(518);
-
-    @include mobile {
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) rotate(-8deg);
-      width: min(rem(280), 70vw);
-      max-width: 70vw;
-    }
+    max-width: rem(518);
   }
   
   figure.pic2 {
     transform : rotate(6deg);
     z-index: 2;
-    right: rem(-110);
-    width: rem(560);
-
-    @include mobile {
-      right: 50%;
-      transform: translateX(50%) rotate(6deg);
-      width: min(rem(300), 75vw);
-      max-width: 75vw;
-    }
+    max-width: rem(560);
   }
-  
-  figure.pic3 {
-    transform : rotate(-25deg);
-    z-index: 1;
-    display: none;
-  } 
+
 }
