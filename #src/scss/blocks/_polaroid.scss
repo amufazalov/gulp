@@ -1,44 +1,78 @@
 @use '../helpers' as *;
 
-.homepage{
+.homepage {
 
-  
-  div#gallery {
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  .hero__polaroid {
+    justify-self: center;
+    align-self: center;
+    margin-top: rem(20);
     overflow: visible;
+    position: relative;
+    width: 100%;
+    height: 100%;
 
     @include mobile {
-      overflow: hidden;
-      width: 100%;
-      max-width: 100vw;
+      order: 2;
+      margin-top: rem(48);
     }
-  }
-  
-  #gallery figure {
-    float: right;
-    position: relative;
-    background-color: #f3f3f3;
-    text-align: center;
-    padding: rem(24);
-    margin: rem(24);
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
-  }
-  
-  figure.pic1 {
-    transform : rotate(-8deg);
-    z-index: 1;
-    top: rem(80);
-    max-width: rem(518);
-  }
-  
-  figure.pic2 {
-    transform : rotate(6deg);
-    z-index: 2;
-    max-width: rem(560);
+
+    .hero__polaroid-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .polaroid {
+      background: #f3f3f3;
+      position: absolute;
+      padding: rem(24);
+      //left: 40%;
+      //background: linear-gradient(120deg, #fff, #DDD 60%);
+      //box-shadow: 2px -2px 20px 0px rgba(0, 0, 0, 0.6), inset 4px 5px 10px 0 rgba(0, 0, 0, 0.1);
+      -webkit-backface-visibility: hidden;
+
+      &:nth-child(1) {
+        left: 0;
+        top: 5%;
+        transform: rotate(-9deg);
+        img{
+          max-width: rem(510);
+        }
+      }
+
+      &:nth-child(2) {
+        left: 45%;
+        top: -23%;
+        transform: rotate(3deg);
+        img{
+          max-width: rem(560);
+        }
+      }
+
+      &:nth-child(3) {
+        left: 55%;
+        top: 10%;
+        transform: rotate(5deg);
+      }
+    }
+
+    .polaroid-img {
+      //position: absolute;
+      top: 20px;
+      left: 10px;
+      overflow-y: hidden;
+    }
+
+    .gloss {
+      position: absolute;
+      top: 0;
+      left: 0;
+      //background: linear-gradient(120deg, rgba(255, 255, 255, .6), transparent 60%, rgba(0, 0, 0, .5) 99%);
+      box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+    }
   }
 
 }

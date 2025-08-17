@@ -30,7 +30,7 @@
 
     &__content {
         display: grid;
-        grid-template-columns: 1fr 2.5fr;
+        grid-template-columns: 1fr 1.5fr;
         gap: rem(48);
         align-items: center;
         
@@ -48,8 +48,8 @@
         display: grid;
         grid-template-rows: auto auto auto;
         gap: rem(48);
-        justify-self: center;
-        align-self: center;
+        justify-self: flex-start;
+        align-self: flex-start;
         max-width: rem(632);
         
         @include mobile {
@@ -62,7 +62,7 @@
             order: 1;
             max-width: 100%;
             width: 100%;
-            justify-self: start;
+            justify-self: flex-start;
             align-self: center;
             text-align: left;
         }
@@ -86,13 +86,13 @@
     &__buttons {
         display: flex;
         gap: rem(24);
-        justify-content: start;
+        justify-content: flex-start;
 
         @include mobile {
             order: 3;
             max-width: 100%;
             width: 100%;
-            justify-self: start;
+            justify-self: flex-start;
             align-self: center;
         }
     }
@@ -101,13 +101,13 @@
         display: grid;
         grid-template-columns: repeat(5, auto);
         gap: rem(12);
-        justify-content: start;
+        justify-content: flex-start;
 
         @include mobile {
             order: 4;
             max-width: 100%;
             width: 100%;
-            justify-self: start;
+            justify-self: flex-start;
             align-self: center;
         }
     }
@@ -119,18 +119,5 @@
     
     &__social-link {
         display: grid;
-    }
-
-    &__polaroid {
-        justify-self: center;
-        align-self: center;
-        margin-top: rem(20);
-        overflow: visible;
-        position: relative;
-        
-        @include mobile {
-            order: 2;
-            margin-top: rem(48);
-        }
     }
 }
