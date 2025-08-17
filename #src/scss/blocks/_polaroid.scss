@@ -10,6 +10,12 @@
     align-items: center;
     position: relative;
     overflow: visible;
+
+    @include mobile {
+      overflow: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
   }
   
   #gallery figure {
@@ -35,6 +41,14 @@
     top: rem(80);
     left: rem(210);
     width: rem(518);
+
+    @include mobile {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) rotate(-8deg);
+      width: min(rem(280), 70vw);
+      max-width: 70vw;
+    }
   }
   
   figure.pic2 {
@@ -42,6 +56,13 @@
     z-index: 2;
     right: rem(-110);
     width: rem(560);
+
+    @include mobile {
+      right: 50%;
+      transform: translateX(50%) rotate(6deg);
+      width: min(rem(300), 75vw);
+      max-width: 75vw;
+    }
   }
   
   figure.pic3 {
