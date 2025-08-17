@@ -10,6 +10,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @include mobile {
+            margin-top: rem(30);
+        }
     }
     &__info {
         display: flex;

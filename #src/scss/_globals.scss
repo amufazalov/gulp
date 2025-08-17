@@ -10,8 +10,20 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed; // Фиксируем фон к viewport
   overflow-x: hidden;
-  overflow-y: hidden;
+  min-height: 100vh; // Обеспечиваем минимальную высоту
+  
+  @include mobile {
+    background-image: url('../images/bg_mobile.jpg');
+    background-attachment: fixed; // Важно для мобильных
+    overflow-y: auto; // Разрешаем вертикальный скролл на мобильных
+    min-height: 100vh; // Обеспечиваем покрытие всего экрана
+  }
+  
+  @include mobile-above {
+    overflow-y: hidden; // Блокируем только на десктопе если нужно
+  }
 }
 
 h1,

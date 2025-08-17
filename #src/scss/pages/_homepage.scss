@@ -13,7 +13,8 @@
 
     @include mobile {
         padding: rem(20);
-      
+        min-height: auto; // Убираем фиксированную высоту на мобильных
+        height: auto; // Позволяем контенту определять высоту
     }
 }
 
@@ -45,7 +46,7 @@
             gap: rem(48);
             width: 100%;
             max-width: 100vw;
-            overflow: hidden;
+            overflow: visible; // Изменяем с hidden на visible
         }
     }
 
@@ -86,7 +87,7 @@
                 max-width: rem(483);
             }
         }
-    }
+}
 
     &__buttons {
         display: flex;
@@ -99,6 +100,7 @@
             width: 100%;
             justify-self: flex-start;
             align-self: center;
+            margin-top: rem(60);
         }
     }
 
