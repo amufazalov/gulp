@@ -7,6 +7,10 @@
     justify-content: space-between;
     min-height: 100vh;
 
+    @include desktop {
+        overflow: hidden;
+    }
+
     @include mobile {
         padding: rem(20)
     }

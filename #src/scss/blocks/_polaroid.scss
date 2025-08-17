@@ -37,6 +37,13 @@
         transform: rotate(-9deg);
         img{
           max-width: rem(510);
+
+          @include laptop {
+            max-width: rem(400);
+          }
+          @include tablet {
+            max-width: rem(340);
+          }
         }
       }
 
@@ -46,6 +53,13 @@
         transform: rotate(3deg);
         img{
           max-width: rem(560);
+
+          @include laptop {
+            max-width: rem(450);
+          }
+          @include tablet {
+            max-width: rem(360);
+          }
         }
       }
 
