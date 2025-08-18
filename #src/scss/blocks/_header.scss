@@ -88,6 +88,10 @@
         display: none;
     }
 
+    &__mobile-socials {
+        display: none;
+    }
+
     &::before,
     &::after {
         content: '';
@@ -188,6 +192,16 @@
                     @include fluid-text(24, 16);
                 }
             }
+        }
+
+        &__mobile-socials {
+            display: flex;
+            gap: rem(20);
+            align-items: center;
+            justify-content: center;
+            padding-bottom: rem(32);
+            min-height: rem(100);
+            
         }
 
         &__list {
