@@ -143,7 +143,108 @@ class BurgerMenu {
     bindNavigationLinks() {
         const navLinks = this.nav.querySelectorAll('.nav__link');
         navLinks.forEach(link => {
-            link.addEventListener('click', () => this.closeMenu());
+            if (!link.classList.contains('nav__link--dropdown')) {
+                link.addEventListener('click', () => this.closeMenu());
+            }
+        });
+
+        // Обработчики для dropdown ссылок
+        this.bindDropdownEvents();
+        this.bindOutsideClickEvents();
+    }
+
+    /**
+     * Привязывает события для dropdown меню
+     */
+    bindDropdownEvents() {
+        const dropdownLinks = this.nav.querySelectorAll('.nav__link--dropdown');
+        const dropdownSubLinks = this.nav.querySelectorAll('.nav__dropdown-link');
+
+        // Обработчик для основных dropdown ссылок
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                this.toggleDropdown(link);
+            });
+        });
+
+        // Обработчик для подссылок dropdown
+        dropdownSubLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (this.isMobileView()) {
+                    this.closeMenu();
+                } else {
+                    this.closeAllDropdowns();
+                }
+            });
+        });
+    }
+
+    /**
+     * Переключает состояние dropdown меню
+     * @param {Element} dropdownLink - ссылка dropdown
+     */
+    toggleDropdown(dropdownLink) {
+        const dropdownItem = dropdownLink.closest('.nav__item--dropdown');
+        const dropdown = dropdownItem.querySelector('.nav__dropdown');
+        
+        // Закрываем другие открытые dropdown
+        this.closeOtherDropdowns(dropdownItem);
+        
+        // Переключаем текущий dropdown
+        dropdown.classList.toggle('is-open');
+        dropdownLink.classList.toggle('is-active');
+        dropdownItem.classList.toggle('is-active');
+    }
+
+    /**
+     * Закрывает все dropdown кроме указанного
+     * @param {Element} currentDropdownItem - текущий dropdown элемент
+     */
+    closeOtherDropdowns(currentDropdownItem) {
+        const allDropdownItems = this.nav.querySelectorAll('.nav__item--dropdown');
+        
+        allDropdownItems.forEach(item => {
+            if (item !== currentDropdownItem) {
+                const dropdown = item.querySelector('.nav__dropdown');
+                const dropdownLink = item.querySelector('.nav__link--dropdown');
+                
+                dropdown.classList.remove('is-open');
+                dropdownLink.classList.remove('is-active');
+                item.classList.remove('is-active');
+            }
+        });
+    }
+
+    /**
+     * Закрывает все dropdown меню
+     */
+    closeAllDropdowns() {
+        const allDropdownItems = this.nav.querySelectorAll('.nav__item--dropdown');
+        
+        allDropdownItems.forEach(item => {
+            const dropdown = item.querySelector('.nav__dropdown');
+            const dropdownLink = item.querySelector('.nav__link--dropdown');
+            
+            dropdown.classList.remove('is-open');
+            dropdownLink.classList.remove('is-active');
+            item.classList.remove('is-active');
+        });
+    }
+
+    /**
+     * Привязывает события для закрытия dropdown при клике вне области
+     */
+    bindOutsideClickEvents() {
+        document.addEventListener('click', (event) => {
+            const dropdownItems = this.nav.querySelectorAll('.nav__item--dropdown');
+            const clickedInsideDropdown = Array.from(dropdownItems).some(item => 
+                item.contains(event.target)
+            );
+            
+            if (!clickedInsideDropdown) {
+                this.closeAllDropdowns();
+            }
         });
     }
 
@@ -205,6 +306,15 @@ class BurgerMenu {
         this.nav.classList.remove('is-open');
         this.burgerButton.classList.remove('is-active');
         this.body.style.overflow = '';
+        this.closeAllDropdowns();
+    }
+
+    /**
+     * Проверяет, является ли текущий вид мобильным
+     * @returns {boolean}
+     */
+    isMobileView() {
+        return window.innerWidth <= this.mobileBreakpoint;
     }
 
     /**
