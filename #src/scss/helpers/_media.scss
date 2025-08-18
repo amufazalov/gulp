@@ -4,7 +4,34 @@ $desktop: 1920.98;
 $laptop: 1440.98;
 $tablet: 1023.98;
 $mobile: 768.98;
+$mobile-md: 640.98;
 $mobile-s: 480.98;
+$mobile-xs: 320.98;
+
+
+@mixin mobile-xs-above {
+  @media (width > rem($mobile-xs)) {
+    @content;
+  }
+}
+
+@mixin mobile-xs {
+  @media (width <=rem($mobile-xs)) {
+    @content;
+  }
+}
+
+@mixin mobile-md-above {
+  @media (width > rem($mobile-md)) {
+    @content;
+  }
+}
+
+@mixin mobile-md {
+  @media (width <=rem($mobile-md)) {
+    @content;
+  }
+}
 
 @mixin desktop-above {
   @media (width > rem($desktop)) {
