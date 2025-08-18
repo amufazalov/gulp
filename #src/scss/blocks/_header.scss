@@ -52,16 +52,26 @@
 
     @include mobile {
         &__nav {
+            background-color: var(--color-secondary);
+            background-image: url('../images/bg_mobile.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             position: fixed;
             top: 0;
             right: -100%;
-            width: rem(300);
+            // width: rem(300);
+            width: 100vw;
             height: 100vh;
             box-shadow: rem(-5) 0 rem(15) rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
+            transition: right 0.5s ease;
             z-index: 999;
             overflow-y: auto;
             margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
 
             &.is-open {
                 right: 0;
@@ -73,6 +83,10 @@
 .nav {
     display: flex;
     justify-content: center;
+
+    &__mobile-logo {
+        display: none;
+    }
 
     &::before,
     &::after {
@@ -108,16 +122,19 @@
     }
 
     &__link {
+        @include fluid-text(24, 16);
+
         display: block;
         padding: rem(10) 0;
         color: var(--color-primary);
         text-decoration: none;
         font-weight: 400;
         font-family: 'SenRegular', sans-serif;
-        font-size: fluid-text(24, 16);
+        line-height: rem(24);
         letter-spacing: rem(0.5);
         transition: var(--transition-duration);
         position: relative;
+        text-transform: uppercase;
 
         &:hover {
             color: var(--color-primary);
@@ -148,24 +165,53 @@
             content: none;
         }
 
-        &__list {
-            flex-direction: column;
-            gap: 0;
-            padding: rem(80) rem(20) rem(20);
-            align-items: stretch;
-        }
+        &__mobile-logo {
+            display: block;
+            text-align: center;
+            padding: rem(30) rem(20) rem(20);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            align-self: flex-start;
+            
+            h1 {
+                font-family: 'GravitasOne', sans-serif;
+                font-size: rem(43);
+                line-height: rem(52);
+                transition: var(--transition-duration);
+                color: var(--color-primary);
+                margin: 0;
 
-        &__item {
-            border-bottom: 1px solid #eee;
-
-            &:last-child {
-                border-bottom: none;
+                @include mobile-md {
+                    @include fluid-text(43, 24);
+                }
+        
+                @include mobile-xs {
+                    @include fluid-text(24, 16);
+                }
             }
         }
 
+        &__list {
+            font-size: rem(32);
+            line-height: rem(32);
+            flex-direction: column;
+            gap: 0;
+            padding: rem(20) rem(20) rem(20);
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        &__item {
+            //border-bottom: 1px solid #eee;
+
+            // &:last-child {
+            //     border-bottom: none;
+            // }
+        }
+
         &__link {
-            padding: rem(20) 0;
-            font-size: rem(16);
+            padding: rem(32) 0;
+            font-size: rem(32);
             border-bottom: none;
 
             &::after {
