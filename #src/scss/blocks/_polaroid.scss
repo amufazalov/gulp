@@ -21,13 +21,16 @@
       align-items: center;
     }
 
+    @include mobile-md {
+      margin-top: rem(100);
+    }
+
     @include mobile-s {
-      //margin-top: rem(20);
-      height: rem(180);
+      height: rem(250);
     }
 
     @include mobile-xs {
-      height: rem(160);
+      height: rem(200);
     }
 
     .hero__polaroid-inner {

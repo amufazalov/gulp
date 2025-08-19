@@ -18,6 +18,10 @@
             align-items: center;
             transition: var(--transition-duration);
         }
+
+        @include mobile-md {
+            min-height: auto;
+        }
     }
 
     &__logo h1 {
@@ -36,12 +40,18 @@
         }
 
         @include mobile-md {
-            @include fluid-text(43, 24);
+            @include fluid-text(43, 16);
+            @include fluid-line-height(43, 16);
         }
 
-        @include mobile-xs {
-            @include fluid-text(24, 16);
-        }
+        // @include mobile-s {
+        //     font-size: rem(20);
+        // }
+
+        // @include mobile-xs {
+        //     font-size: rem(16)!important;
+        // }
+
     }
 
     &__nav_wrapper {

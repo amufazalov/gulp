@@ -26,3 +26,11 @@
     padding: rem(12) rem(16);
   }
 }
+
+.hero__button{
+  @include mobile-xs {
+    max-width: none;
+    font-size: rem(16);
+    padding: rem(16) 0;
+  }
+}
