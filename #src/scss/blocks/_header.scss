@@ -236,138 +236,138 @@
 }
 
 // Dropdown стили
-.nav {
-    &__item--dropdown {
-        &.is-active .nav__dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
+// .nav {
+//     &__item--dropdown {
+//         &.is-active .nav__dropdown {
+//             opacity: 1;
+//             visibility: visible;
+//             transform: translateX(-50%) translateY(0);
+//         }
 
-        &.is-active .nav__dropdown-arrow {
-            transform: rotate(180deg);
-        }
-    }
+//         &.is-active .nav__dropdown-arrow {
+//             transform: rotate(180deg);
+//         }
+//     }
 
-    &__link--dropdown {
-        display: flex;
-        align-items: center;
-        gap: rem(8);
-    }
+//     &__link--dropdown {
+//         display: flex;
+//         align-items: center;
+//         gap: rem(8);
+//     }
 
-    &__dropdown-arrow {
-        font-size: rem(12);
-        transition: transform var(--transition-duration);
-        color: var(--color-primary);
-    }
+//     &__dropdown-arrow {
+//         font-size: rem(12);
+//         transition: transform var(--transition-duration);
+//         color: var(--color-primary);
+//     }
 
-    &__dropdown {
-        position: absolute;
-        top: calc(100% + rem(10));
-        left: 50%;
-        transform: translateX(-50%) translateY(rem(10));
-        background: var(--color-white);
-        border: 1px solid var(--color-primary);
-        border-radius: rem(8);
-        box-shadow: 0 rem(8) rem(24) rgba(0, 0, 0, 0.15);
-        opacity: 0;
-        visibility: hidden;
-        transition: all var(--transition-duration);
-        z-index: 1000;
-        min-width: rem(200);
-        list-style: none;
-        margin: 0;
-        padding: rem(8) 0;
+//     &__dropdown {
+//         position: absolute;
+//         top: calc(100% + rem(10));
+//         left: 50%;
+//         transform: translateX(-50%) translateY(rem(10));
+//         background: var(--color-white);
+//         border: 1px solid var(--color-primary);
+//         border-radius: rem(8);
+//         box-shadow: 0 rem(8) rem(24) rgba(0, 0, 0, 0.15);
+//         opacity: 0;
+//         visibility: hidden;
+//         transition: all var(--transition-duration);
+//         z-index: 1000;
+//         min-width: rem(200);
+//         list-style: none;
+//         margin: 0;
+//         padding: rem(8) 0;
 
-        &.is-open {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
+//         &.is-open {
+//             opacity: 1;
+//             visibility: visible;
+//             transform: translateX(-50%) translateY(0);
+//         }
 
-        @include mobile {
-            position: static;
-            transform: none;
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            opacity: 1;
-            visibility: visible;
-            min-width: auto;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height var(--transition-duration) ease;
-            padding: 0;
-            margin-left: rem(20);
-            margin-top: 0;
+//         @include mobile {
+//             position: static;
+//             transform: none;
+//             background: transparent;
+//             border: none;
+//             box-shadow: none;
+//             opacity: 1;
+//             visibility: visible;
+//             min-width: auto;
+//             max-height: 0;
+//             overflow: hidden;
+//             transition: max-height var(--transition-duration) ease;
+//             padding: 0;
+//             margin-left: rem(20);
+//             margin-top: 0;
 
-            &.is-open {
-                max-height: rem(300);
-                padding: rem(8) 0;
-                margin-top: rem(8);
-            }
-        }
-    }
+//             &.is-open {
+//                 max-height: rem(300);
+//                 padding: rem(8) 0;
+//                 margin-top: rem(8);
+//             }
+//         }
+//     }
 
-    &__dropdown-item {
-        margin: 0;
-    }
+//     &__dropdown-item {
+//         margin: 0;
+//     }
 
-    &__dropdown-link {
-        display: block;
-        padding: rem(12) rem(20);
-        color: var(--color-secondary);
-        text-decoration: none;
-        font-size: rem(16);
-        line-height: rem(20);
-        transition: all var(--transition-duration);
-        text-transform: none;
-        font-weight: 400;
+//     &__dropdown-link {
+//         display: block;
+//         padding: rem(12) rem(20);
+//         color: var(--color-secondary);
+//         text-decoration: none;
+//         font-size: rem(16);
+//         line-height: rem(20);
+//         transition: all var(--transition-duration);
+//         text-transform: none;
+//         font-weight: 400;
 
-        &:hover {
-            background: var(--color-primary);
-            color: var(--color-white);
-        }
+//         &:hover {
+//             background: var(--color-primary);
+//             color: var(--color-white);
+//         }
 
-        &::after {
-            display: none;
-        }
+//         &::after {
+//             display: none;
+//         }
 
-        @include mobile {
-            color: var(--color-primary);
-            font-size: rem(24);
-            line-height: rem(24);
-            padding: rem(16) rem(20);
-            text-transform: uppercase;
+//         @include mobile {
+//             color: var(--color-primary);
+//             font-size: rem(24);
+//             line-height: rem(24);
+//             padding: rem(16) rem(20);
+//             text-transform: uppercase;
 
-            &:hover {
-                background: rgba(255, 255, 255, 0.1);
-                color: var(--color-primary);
-            }
-        }
-    }
-}
+//             &:hover {
+//                 background: rgba(255, 255, 255, 0.1);
+//                 color: var(--color-primary);
+//             }
+//         }
+//     }
+// }
 
-// Универсальные стили для dropdown
-.nav__item--dropdown .nav__link--dropdown {
-    &::after {
-        display: none;
-    }
+// // Универсальные стили для dropdown
+// .nav__item--dropdown .nav__link--dropdown {
+//     &::after {
+//         display: none;
+//     }
 
-    &.is-active .nav__dropdown-arrow {
-        transform: rotate(180deg);
-    }
+//     &.is-active .nav__dropdown-arrow {
+//         transform: rotate(180deg);
+//     }
 
-    @include mobile {
-        &.is-active {
-            background: rgba(255, 255, 255, 0.1);
-        }
-    }
+//     @include mobile {
+//         &.is-active {
+//             background: rgba(255, 255, 255, 0.1);
+//         }
+//     }
 
-    @include mobile-above {
-        &.is-active {
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: rem(4);
-        }
-    }
-}
+//     @include mobile-above {
+//         &.is-active {
+//             background: rgba(0, 0, 0, 0.05);
+//             border-radius: rem(4);
+//         }
+//     }
+// }

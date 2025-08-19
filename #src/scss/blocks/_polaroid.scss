@@ -21,6 +21,15 @@
       align-items: center;
     }
 
+    @include mobile-s {
+      //margin-top: rem(20);
+      height: rem(180);
+    }
+
+    @include mobile-xs {
+      height: rem(160);
+    }
+
     .hero__polaroid-inner {
       position: relative;
       width: 100%;
@@ -41,6 +50,10 @@
         padding: rem(15);
       }
 
+      @include mobile-s {
+        padding: rem(10);
+      }
+
       &:nth-child(1) {
         left: 0;
         top: 5%;
@@ -54,11 +67,25 @@
           @include tablet {
             max-width: rem(340);
           }
+          @include mobile-s {
+            max-width: rem(220)!important;
+          }
+
+          @include mobile-xs {
+            max-width: rem(185)!important;
+          }
         }
 
         @include mobile {
           left: 5%;
           top: rem(20);
+          transform: rotate(-12deg);
+          z-index: 1;
+        }
+
+        @include mobile-s {
+          left: 5%;
+          top: rem(-50);
           transform: rotate(-12deg);
           z-index: 1;
         }
@@ -77,12 +104,24 @@
           @include tablet {
             max-width: rem(360);
           }
+
+          @include mobile-s {
+            max-width: rem(220)!important;
+          }
+
+          @include mobile-xs {
+            max-width: rem(210)!important;
+          }
         }
 
         @include mobile {
           left: 44%;
           top: -20%;
           z-index: 2;
+        }
+
+        @include mobile-s {
+          top: 0;
         }
       }
 
