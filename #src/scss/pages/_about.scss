@@ -247,4 +247,29 @@
         }
 
     }
+
+    //International
+    &__international {
+        margin-top: rem(200);
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        &-content {
+            min-height: calc(100vh - rem(96));
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+
+            &-image {
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+
+            &-text {
+
+                max-width: rem(660);
+            }
+        }
+    }
 }
