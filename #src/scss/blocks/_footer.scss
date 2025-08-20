@@ -2,12 +2,26 @@
 
 .footer { 
 
-    flex-shrink: 1;
+    flex-shrink: 0;
     justify-self: flex-end;
     
+    // Прижимаем footer к низу на всех мобильных устройствах (mobile и ниже)
+    @include mobile {
+        margin-top: auto;
+    }
+    
+    @include mobile-md {
+        margin-top: auto;
+    }
+    
     @include mobile-s {
+        margin-top: auto;
         display: flex;
         justify-content: center;
+    }
+    
+    @include mobile-xs {
+        margin-top: auto;
     }
     
     &__content {

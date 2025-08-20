@@ -13,8 +13,7 @@
 
     @include mobile {
         padding: rem(20);
-        min-height: auto; // Убираем фиксированную высоту на мобильных
-        height: auto; // Позволяем контенту определять высоту
+        min-height: 100vh; // Сохраняем полную высоту экрана для прижатия footer
     }
 
     @include mobile-xs {
