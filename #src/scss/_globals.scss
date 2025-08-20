@@ -6,7 +6,8 @@ body {
   color: var(--color-text-base);
   font-family: var(--font-family-base);
   background: var(--color-secondary);
-  background-image: url('../images/bg.jpg');
+  background-image: url('../images/bg_texture.jpg');
+  background-color: #f3f3f3;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,8 +23,24 @@ body {
   }
   
   @include mobile-above {
-    overflow-y: hidden; // Блокируем только на десктопе если нужно
+    overflow-y: auto; // Блокируем только на десктопе если нужно
   }
+}
+
+.body-bg-top {
+  background-image: url('../images/bg_top.png');
+  background-color: transparent;
+  background-size: contain;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.body-bg-bottom {
+  background-image: url('../images/bg_bottom.png');
+  background-color: transparent;
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
 }
 
 h1,

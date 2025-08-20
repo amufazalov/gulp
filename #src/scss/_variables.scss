@@ -11,8 +11,8 @@
 
   --transition-duration: 0.2s;
 
-  // @include laptop {
-  //   --container-width: #{rem(1200)};
+  // @include desktop-above {
+  //   --container-width: #{rem(2040)};
   //   --container-padding-x: #{rem(20)};
   // }
 }

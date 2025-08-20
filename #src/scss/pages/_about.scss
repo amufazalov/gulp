@@ -1,0 +1,20 @@
+@use '../helpers' as *;
+
+.wrapper.about {
+    padding: rem(48) rem(20) rem(15) rem(20);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 6000px;
+}
+
+.wrapper.about.container {
+   @include desktop-above {
+    --container-width: #{rem(2048)};
+    --container-padding-x: #{rem(20)};
+  }
+}
+
+.about-page {
+    
+}
