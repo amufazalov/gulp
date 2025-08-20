@@ -1,20 +1,124 @@
 @use '../helpers' as *;
 
-.wrapper.about {
-    padding: rem(48) rem(20) rem(15) rem(20);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 6000px;
-}
-
-.wrapper.about.container {
-   @include desktop-above {
-    --container-width: #{rem(2048)};
-    --container-padding-x: #{rem(20)};
-  }
-}
-
 .about-page {
-    
+    &--wrapper {
+        padding: rem(48) rem(20) rem(15) rem(20);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @include desktop-above {
+            --container-width: #{rem(2088)};
+            --container-padding-x: #{rem(20)};
+        }
+    }
+    // Common page styles
+    &__paragraph {
+        font-size: rem(80);
+        line-height: rem(88);
+        font-family: 'SenBold', sans-serif;
+        font-weight: 700;
+        color: var(--color-primary);
+        letter-spacing: rem(0);
+
+        span {
+            display: inline;
+            color: #858585;
+        }
+    }
+
+    &__paragraph-small {
+        font-size: rem(20);
+        line-height: rem(28);
+        font-family: 'SenRegular', sans-serif;
+        font-weight: 400;
+    }
+
+    &__inner {
+        width: 100%;
+    }
+
+    &__section {
+        min-height: 100vh; //calc(100vh - rem(150) - rem(95)); // Учитываем высоту хедера + отступы
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        &-header {
+            margin-bottom: rem(32);
+        }
+
+        &-title {
+            font-size: rem(48);
+            line-height: rem(46);
+            font-family: 'SenBold', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        &-divider {
+            margin-top: rem(16);
+            width: 100%;
+            height: rem(2);
+            background-image: url('../images/divider.png');
+            background-repeat: repeat-x;
+        }
+    }
+
+
+    // Quote styles
+    &__quote {
+        &-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: rem(80);
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+
+            @include tablet {
+                grid-template-columns: 1fr;
+                gap: rem(40);
+                text-align: center;
+            }
+
+            @include mobile {
+                gap: rem(32);
+            }
+
+            @include mobile-md {
+                gap: rem(24);
+            }
+        }
+
+        &-text {
+            max-width: rem(1110);
+        }
+
+        &-image {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        &-photo {
+            max-width: rem(1020);
+            object-fit: cover;
+        }
+    }
+
+    &__education {
+        position: relative;
+        .header--education {
+            margin-left: rem(422);
+        }
+        &-text {
+            max-width: rem(824);
+            margin-left: rem(422);
+        }
+    }
+
+    &__films {
+        position: relative;
+    }
 }
