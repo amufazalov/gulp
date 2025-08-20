@@ -12,6 +12,7 @@
             --container-padding-x: #{rem(20)};
         }
     }
+
     // Common page styles
     &__paragraph {
         font-size: rem(80);
@@ -107,18 +108,143 @@
         }
     }
 
+    //Education
     &__education {
         position: relative;
+
         .header--education {
             margin-left: rem(422);
         }
+
         &-text {
             max-width: rem(824);
             margin-left: rem(422);
         }
     }
 
+    //Films
     &__films {
         position: relative;
+
+        &-content {}
+
+        .films-list {
+            display: flex;
+            flex-direction: column;
+            gap: rem(100);
+
+            &__item {
+                display: grid;
+                grid-template-columns: max-content auto;
+                gap: rem(95);
+
+                &-title {
+                    font-size: rem(36);
+                    line-height: rem(43);
+                    font-family: 'SenBold', sans-serif;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    margin-bottom: rem(16);
+                }
+
+                &-role {
+                    font-size: rem(20);
+                    line-height: rem(24);
+                    letter-spacing: rem(5);
+                    text-transform: uppercase;
+                    font-family: 'SenRegular', sans-serif;
+                    font-weight: 400;
+                    color: var(--color-gray);
+                    margin-bottom: rem(32);
+                }
+
+                &-description {
+                    max-width: rem(792);
+                    margin-bottom: rem(52);
+
+                    p {
+                        font-size: rem(20);
+                        line-height: rem(30);
+                        margin-bottom: rem(12);
+                    }
+                }
+            }
+
+            .film-awards {
+                &__label {
+                    font-size: rem(24);
+                    line-height: rem(28);
+                    font-family: 'SenBold', sans-serif;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    margin-bottom: rem(32);
+                }
+
+                &__list {
+                    display: grid;
+                    grid-template-columns: repeat(2, max-content);
+                    row-gap: rem(24);
+                    column-gap: rem(46);
+                }
+
+                &__item {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: max-content auto;
+                    gap: rem(32);
+
+                    &-location {
+                        display: block;
+                        font-size: rem(20);
+                        line-height: rem(24);
+                        letter-spacing: rem(3);
+                        text-transform: uppercase;
+                        font-family: 'SenRegular', sans-serif;
+                        font-weight: 400;
+                        color: var(--color-gray);
+                    }
+
+                    &-description {
+                        display: block;
+                        font-size: rem(20);
+                        line-height: rem(30)
+                    }
+                }
+            }
+
+            .first-film {
+                .film-awards__item {
+                    &:nth-child(1) {
+                        order: 1; // Испания остается первой
+                    }
+
+                    &:nth-child(2) {
+                        order: 3; // Португалия перемещается на третью позицию
+                    }
+
+                    &:nth-child(3) {
+                        order: 5; // Италия перемещается на пятую позицию  
+                    }
+
+                    &:nth-child(4) {
+                        order: 2; // Венесуэла перемещается на вторую позицию
+                    }
+
+                    &:nth-child(5) {
+                        order: 4; // Индия перемещается на четвертую позицию
+                    }
+
+                    &:nth-child(6) {
+                        order: 6; // Иран остается шестым
+                    }
+                }
+            }
+
+            .second-film {
+                display: grid;
+                grid-template-columns: repeat(1, max-content);
+            }
+        }
+
     }
 }
