@@ -4,7 +4,7 @@
   display: none;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
+  align-items: flex-start;
   width: rem(52);
   height: rem(52);
   background: transparent;
@@ -16,6 +16,7 @@
 
   @include mobile-s {
     padding-left: rem(30);
+    margin-top: rem(3);
   }
 
   &__line {
@@ -23,7 +24,7 @@
     height: rem(2);
     border-radius: rem(2);
     background: var(--color-primary);
-    margin: 5px 0;
+    margin: rem(5) 0;
     transition: all 0.3s ease;
     transform-origin: center;
     &:first-of-type {
@@ -35,7 +36,7 @@
 
     @include mobile-s {
       width: rem(16);
-      margin: 2px 0;
+      margin: rem(2) 0;
       &:first-of-type {
         width: rem(12);
       }
@@ -49,9 +50,16 @@
   &.is-active {
     .burger-button__line {
       width: rem(34);
+      margin: rem(3);
+      
       &:first-of-type {
         width: rem(34);
         transform: rotate(45deg) translate(rem(8), rem(8));
+        
+        @include mobile-s {
+          width: rem(24);
+          transform: rotate(45deg) translate(rem(6), rem(6));
+        }
       }
 
       &:nth-child(2) {
@@ -62,13 +70,12 @@
       &:last-of-type {
         width: rem(34);
         transform: rotate(-45deg) translate(rem(8), rem(-8));
-      }
-
+        
         @include mobile-s {
           width: rem(24);
-          height: rem(24);
+          transform: rotate(-45deg) translate(rem(6), rem(-6));
         }
-
+      }
     }
   }
 

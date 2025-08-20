@@ -18,4 +18,14 @@
 .hero__social-icon-m{
     width: rem(80);
     height: rem(80);
+
+    @include mobile-s {
+        width: rem(49);
+        height: rem(49);
+    }
+
+    @include mobile-xs {
+        width: rem(32);
+        height: rem(32);
+    }
 }

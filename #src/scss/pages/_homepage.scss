@@ -100,15 +100,10 @@
             @include mobile {
                 @include fluid-text(48, 28);
                 @include fluid-line-height(48, 28);
-
-                // font-size: rem(48);
-                // line-height: rem(48);
                 max-width: rem(483);
             }
 
             @include mobile-s {
-                // font-size: rem(28);
-                // line-height: rem(28);
                 max-width: rem(320);
             }
 
@@ -136,8 +131,12 @@
             margin-top: rem(90);
         }
 
+        @include mobile-s {
+            margin-top: rem(0);
+        }
+
         @include mobile-xs {
-            margin-top: rem(10)!important;
+            margin-top: rem(50)!important;
             display: flex;
             flex-direction: column;
             gap: rem(12);
