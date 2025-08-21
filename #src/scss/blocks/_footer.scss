@@ -23,6 +23,13 @@
     @include mobile-xs {
         margin-top: auto;
     }
+
+    &__get_in_touch {
+        font-size: rem(24);
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: rem(24);
+    }
     
     &__content {
         font-size: rem(14);        

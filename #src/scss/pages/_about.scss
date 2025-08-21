@@ -290,4 +290,13 @@
             max-width: rem(660);
         }
     }
+
+    //Footer
+    .footer {
+        &__social {
+            padding-left: rem(90);
+            display: flex;
+            gap: rem(24);
+        }
+    }
 }
