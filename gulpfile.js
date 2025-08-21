@@ -124,7 +124,7 @@ function css() {
                 outputStyle: "expanded"
             }).on('error', sass.logError)
         )
-        .pipe(groupMedia())
+        // .pipe(groupMedia()) // Отключаем группировку медиа-запросов
         .pipe(
             autoprefixer({
                 overrideBrowserslist: ['last 5 versions'],

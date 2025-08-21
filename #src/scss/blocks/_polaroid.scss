@@ -5,6 +5,13 @@
   position: absolute;
   padding: rem(24);
   backface-visibility: hidden;
+  @include mobile {
+    padding: rem(15);
+  }
+
+  @include mobile-s {
+    padding: rem(10);
+  }
 }
 
 .polaroid-img {

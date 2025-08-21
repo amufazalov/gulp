@@ -8,31 +8,6 @@ $mobile-md: 640.98;
 $mobile-s: 480.98;
 $mobile-xs: 320.98;
 
-
-@mixin mobile-xs-above {
-  @media (width > rem($mobile-xs)) {
-    @content;
-  }
-}
-
-@mixin mobile-xs {
-  @media (width <=rem($mobile-xs)) {
-    @content;
-  }
-}
-
-@mixin mobile-md-above {
-  @media (width > rem($mobile-md)) {
-    @content;
-  }
-}
-
-@mixin mobile-md {
-  @media (width <=rem($mobile-md)) {
-    @content;
-  }
-}
-
 @mixin desktop-above {
   @media (width > rem($desktop)) {
     @content;
@@ -82,6 +57,19 @@ $mobile-xs: 320.98;
   }
 }
 
+@mixin mobile-md-above {
+  @media (width > rem($mobile-md)) {
+    @content;
+  }
+}
+
+@mixin mobile-md {
+  @media (width <=rem($mobile-md)) {
+    @content;
+  }
+}
+
+
 @mixin mobile-s-above {
   @media (width > rem($mobile-s)) {
     @content;
@@ -94,6 +82,17 @@ $mobile-xs: 320.98;
   }
 }
 
+@mixin mobile-xs-above {
+  @media (width > rem($mobile-xs)) {
+    @content;
+  }
+}
+
+@mixin mobile-xs {
+  @media (width <=rem($mobile-xs)) {
+    @content;
+  }
+}
 
 /* hover - медиа запрос для устройств с поддержкой тачскрина */
 /* $hasActiveEffectOnMobile - включает эффект на мобильных устройствах */
