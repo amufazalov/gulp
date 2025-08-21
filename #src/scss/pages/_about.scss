@@ -253,23 +253,41 @@
         margin-top: rem(200);
         align-items: flex-start;
         justify-content: flex-start;
+        min-height: calc(100vh - rem(196));
 
         &-content {
-            min-height: calc(100vh - rem(96));
+            min-height: calc(100vh - rem(296));
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 45%;
+            gap: rem(70);
             align-items: center;
+        }
 
-            &-image {
-                position: relative;
-                height: 100%;
-                width: 100%;
+        &-image {
+            align-self: baseline;
+            position: relative;
+            min-height: rem(560);
+
+            .polaroid {
+                img {
+                    max-width: rem(560);
+                }
+
+                &:nth-child(1) {
+                    top: rem(30);
+                    transform: rotate(-4deg);
+                }
+
+                &:nth-child(2) {
+                    transform: rotate(8deg);
+                    right: 0;
+                    top: rem(150);
+                }
             }
+        }
 
-            &-text {
-
-                max-width: rem(660);
-            }
+        &-text {
+            max-width: rem(660);
         }
     }
 }
