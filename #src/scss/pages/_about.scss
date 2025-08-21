@@ -505,6 +505,11 @@
             grid-template-columns: 1fr 45%;
             gap: rem(70);
             align-items: center;
+
+            @include mobile {
+                grid-template-columns: 1fr;
+                gap: rem(0);
+            }
         }
 
         &-image {
@@ -515,17 +520,27 @@
             .polaroid {
                 img {
                     max-width: rem(560);
+                    @include mobile {
+                        max-width: rem(400);
+                    }
                 }
 
                 &:nth-child(1) {
                     top: rem(30);
                     transform: rotate(-4deg);
+                    @include mobile {
+                        left: rem(-50);
+                    }
                 }
 
                 &:nth-child(2) {
                     transform: rotate(8deg);
                     right: 0;
                     top: rem(150);
+                    @include mobile {
+                        right: rem(-50);
+                        top: rem(80);
+                    }
                 }
             }
         }
@@ -537,6 +552,12 @@
                 font-size: rem(20);
                 line-height: rem(30);
                 margin-bottom: rem(48);
+
+                @include mobile {
+                    font-size: rem(16);
+                    line-height: rem(18);
+                    margin-bottom: rem(24);
+                }
             }
         }
     }

@@ -93,7 +93,14 @@
 
     &__social {
         display: flex;
+        width: 100%;
         gap: rem(24);
-        padding-left: rem(90);
+        align-items: center;
+        justify-content: center;
+        margin-bottom: rem(-32);
+
+        @include mobile {
+            margin-bottom: rem(0);
+        }
     }
 }
