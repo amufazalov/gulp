@@ -304,17 +304,25 @@
 
             &__item {
                 display: grid;
-                grid-template-columns: auto auto;
+                grid-template-columns: rem(539) auto;
                 gap: rem(95);
 
                 @include mobile {
-                    gap: rem(20);
-                    grid-template-columns: 50% 50%;
+                    gap: rem(0);
+                    display: flex;
+                    flex-wrap: wrap;
                 }
 
                 &-image {
                     @include mobile {
-                        width: 100%;
+                        width: calc(50% - rem(10));
+                        margin-right: rem(20);
+                    }
+                }
+
+                &-content {
+                    @include mobile {
+                        width: calc(50% - rem(10));
                     }
                 }
 
@@ -327,6 +335,7 @@
                     margin-bottom: rem(16);
 
                     @include mobile {
+                        margin-top: rem(32);
                         font-size: rem(24);
                         line-height: rem(24);
                         font-family: 'SenRegular', sans-serif;
@@ -343,6 +352,10 @@
                     font-weight: 400;
                     color: var(--color-gray);
                     margin-bottom: rem(32);
+
+                    @include mobile {
+                        letter-spacing: rem(2);
+                    }
                 }
 
                 &-description {
@@ -362,6 +375,18 @@
                 }
             }
 
+            .films-list__item-awards {
+                @include mobile {
+                    display: none;
+                }
+            }
+
+            .film-awards-mobile {
+                @include mobile-above {
+                    display: none;
+                }
+            }
+
             .film-awards {
                 &__label {
                     font-size: rem(24);
@@ -370,6 +395,10 @@
                     font-weight: 700;
                     text-transform: uppercase;
                     margin-bottom: rem(32);
+
+                    @include mobile {
+                        margin-top: rem(32);
+                    }
                 }
 
                 &__list {
@@ -382,6 +411,10 @@
                         grid-template-columns: repeat(2, auto);
                         column-gap: rem(66);
                     }
+
+                    @include mobile {
+                        grid-template-columns: repeat(1, auto);
+                    }
                 }
 
                 &__item {
@@ -389,6 +422,7 @@
                     display: grid;
                     grid-template-columns: max-content auto;
                     gap: rem(32);
+                    align-items: center;
 
                     &-location {
                         display: block;
@@ -399,12 +433,20 @@
                         font-family: 'SenRegular', sans-serif;
                         font-weight: 400;
                         color: var(--color-gray);
+                        @include mobile {
+                            font-size: rem(16);
+                            line-height: rem(18);
+                        }
                     }
 
                     &-description {
                         display: block;
                         font-size: rem(20);
-                        line-height: rem(30)
+                        line-height: rem(30);
+                        @include mobile {
+                            font-size: rem(16);
+                            line-height: rem(18);
+                        }
                     }
                 }
             }

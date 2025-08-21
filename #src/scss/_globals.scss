@@ -16,7 +16,7 @@ body {
   min-height: 100vh; // Обеспечиваем минимальную высоту
   
   @include mobile {
-    background-image: url('../images/bg_mobile.jpg');
+    //background-image: url('../images/bg_mobile.jpg');
     background-attachment: fixed; // Важно для мобильных
     overflow-y: auto; // Разрешаем вертикальный скролл на мобильных
     min-height: 100vh; // Обеспечиваем покрытие всего экрана
