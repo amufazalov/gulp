@@ -3,6 +3,7 @@
 .about-page {
     &--wrapper {
         padding: rem(48) rem(20) rem(15) rem(20);
+        margin-inline: auto;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -10,6 +11,12 @@
         @include desktop-above {
             --container-width: #{rem(2088)};
             --container-padding-x: #{rem(20)};
+        } 
+
+        @include desktop {
+            --container-width: #{rem(1920)};
+            --container-padding-x: #{rem(20)};
+            overflow-x: hidden;
         }
     }
 
@@ -25,6 +32,10 @@
         span {
             display: inline;
             color: #858585;
+        }
+
+        @include desktop {
+            font-size: rem(80);
         }
     }
 
@@ -76,24 +87,14 @@
 
         &-content {
             display: grid;
-            grid-template-columns: 1fr auto;
+            grid-template-columns: max-content auto;
             gap: rem(80);
             align-items: center;
             width: 100%;
             margin: 0 auto;
 
-            @include tablet {
-                grid-template-columns: 1fr;
-                gap: rem(40);
-                text-align: center;
-            }
-
-            @include mobile {
-                gap: rem(32);
-            }
-
-            @include mobile-md {
-                gap: rem(24);
+            @include desktop {
+                gap: 0;
             }
         }
 
@@ -116,6 +117,13 @@
     &__info-two {
         align-items: center;
         justify-content: center;
+
+        @include desktop {
+            .about-page__paragraph {
+                font-size: rem(64);
+                line-height: rem(70.4);
+            }
+        }
     }
 
     //Education
@@ -124,11 +132,19 @@
 
         .header--education {
             margin-left: rem(422);
+
+            @include desktop {
+                margin-left: rem(495);
+            }
         }
 
         &-text {
             max-width: rem(824);
             margin-left: rem(422);
+
+            @include desktop {
+                margin-left: rem(495);
+            }
         }
 
         &-gallery {
@@ -138,12 +154,19 @@
             margin-left: rem(275);
             margin-top: rem(100);
 
+            @include desktop {
+                margin-left: rem(420);
+            }
+
             &-item {
                 position: relative;
 
                 .polaroid {
                     img {
                         max-width: rem(560);
+                        @include desktop {
+                            max-width: rem(500);
+                        }
                     }
                 }
 
@@ -156,19 +179,31 @@
                     top: rem(130);
                     left: rem(150);
                     z-index: 3;
+                    @include desktop {
+                        left: rem(200);
+                        top: rem(70);
+                    }
                 }
 
                 &:nth-child(3) {
-                    transform: rotate(-9deg);
+                    transform: rotate(-13deg);
                     left: rem(100);
-                    top: rem(-90);
+                    top: rem(-70);
                     z-index: 2;
+                    @include desktop {
+                        left: rem(210);
+                   
+                    }
                 }
                 &:nth-child(4) {
                     transform: rotate(13deg);
                     left: rem(180);
                     top: rem(80);
                     z-index: 1;
+                    @include desktop {
+                        left: rem(400);
+                        top: rem(30);
+                    }
                 }
             }
         }
@@ -178,6 +213,15 @@
         position: absolute;
         top: 0;
         left: rem(-230);
+
+        @include desktop {
+            height: 100vh;
+            overflow-y: hidden;
+            left: rem(-100);
+            &-photo {
+                object-fit: cover;
+            }
+        }
     }
 
     //Films
@@ -243,6 +287,10 @@
                     grid-template-columns: repeat(2, max-content);
                     row-gap: rem(24);
                     column-gap: rem(46);
+                    @include desktop {
+                        grid-template-columns: repeat(2, auto);
+                        column-gap: rem(66);
+                    }
                 }
 
                 &__item {
@@ -301,6 +349,9 @@
             .second-film {
                 display: grid;
                 grid-template-columns: repeat(1, max-content);
+                @include desktop {
+                    grid-template-columns: repeat(1, auto);
+                }
             }
         }
 
@@ -312,6 +363,7 @@
         align-items: flex-start;
         justify-content: flex-start;
         min-height: calc(100vh - rem(196));
+        margin-bottom: rem(40);
 
         &-content {
             min-height: calc(100vh - rem(296));
@@ -346,6 +398,11 @@
 
         &-text {
             max-width: rem(660);
+            p {
+                font-size: rem(20);
+                line-height: rem(30);
+                margin-bottom: rem(48);
+            }
         }
     }
 
