@@ -90,4 +90,10 @@
             }
         }
     }
+
+    &__social {
+        display: flex;
+        gap: rem(24);
+        padding-left: rem(90);
+    }
 }
