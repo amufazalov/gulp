@@ -182,6 +182,7 @@
             @include mobile-xs {
                 font-size: rem(24);
                 line-height: rem(24);
+                margin-bottom: rem(86);
             }
         }
     }
@@ -342,8 +343,6 @@
     //Films
     &__films {
         position: relative;
-
-        &-content {}
 
         .films-list {
             display: flex;
