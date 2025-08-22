@@ -7,6 +7,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        overflow-x: hidden;
 
         @include desktop-above {
             --container-width: #{rem(2088)};
@@ -16,7 +17,6 @@
         @include desktop {
             --container-width: #{rem(1920)};
             --container-padding-x: #{rem(20)};
-            overflow-x: hidden;
         }
 
         @include mobile-xs {
@@ -45,6 +45,11 @@
         @include mobile {
             font-size: rem(48);
             line-height: rem(48);
+        }
+
+        @include mobile-s {
+            font-size: rem(32);
+            line-height: rem(32);
         }
 
         @include mobile-xs {
@@ -129,10 +134,9 @@
         }
 
         &-content {
-            display: grid;
-            grid-template-columns: max-content auto;
-            gap: rem(80);
+            display: flex;
             align-items: center;
+            justify-content: space-between;
             width: 100%;
             margin: 0 auto;
 
@@ -140,26 +144,44 @@
                 gap: 0;
             }
 
-            @include mobile {
+            @include laptop-s {
+                display: grid;
                 grid-template-columns: 1fr;
                 gap: rem(40);
             }
         }
 
         &-text {
-            max-width: rem(1110);
+            min-width: rem(1115);
+            @include laptop {
+                min-width: rem(900);
+            }
+            @include laptop-s {
+                min-width: auto;
+            }
         }
 
         &-image {
             flex-shrink: 0;
             position: relative;
-
         }
 
         &-photo {
-            max-width: rem(1020);
+            min-width: rem(1020);
             object-fit: cover;
             width: 100%;
+            @include desktop {
+                margin-left: rem(-130);
+            }
+            @include laptop {
+                min-width: rem(900);
+            }
+            @include laptop-s {
+                margin-left: 0;
+                min-width: auto;
+                max-width: rem(650);
+                justify-self: center;
+            }
         }
     }
 
@@ -169,9 +191,16 @@
         justify-content: center;
 
         .about-page__paragraph {
+            margin-bottom: rem(50);
+            
             @include desktop {
                 font-size: rem(64);
                 line-height: rem(70.4);
+            }
+
+            @include tablet {
+                font-size: rem(48);
+                line-height: rem(52.8);
             }
 
             @include mobile {
@@ -198,7 +227,11 @@
                 margin-left: rem(495);
             }
 
-            @include mobile {
+            @include laptop {
+                margin-left: rem(400);
+            }
+
+            @include tablet-s {
                 margin-left: 0;
             }
         }
@@ -211,89 +244,113 @@
                 margin-left: rem(495);
             }
 
-            @include mobile {
+            @include laptop {
+                margin-left: rem(400);
+            }
+
+            @include tablet-s {
                 margin-left: 0;
             }
         }
 
         &-gallery {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            margin-left: rem(275);
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: rem(20);
+            margin-left: 40%;
             margin-top: rem(100);
+            min-height: rem(400);
+            position: relative;
 
             @include desktop {
-                margin-left: rem(420);
+                margin-left: 60%;
             }
 
-            @include mobile {
-                margin-left: 0
+            @include tablet-s {
+                margin-left: 0;
+                justify-content: space-between;
+                gap: rem(10);
             }
 
             @include mobile-xs {
                 margin-top: rem(60);
+                justify-content: center;
             }
 
             &-item {
-                position: relative;
-
+                flex: 0 0 auto;
+                
                 .polaroid {
-                    img {
-                        max-width: rem(560);
+                    max-width: rem(560);
+                    transition: transform 0.3s ease;
 
-                        @include desktop {
-                            max-width: rem(500);
-                        }
+                    @include desktop {
+                        max-width: rem(500);
+                    }
 
-                        @include mobile {
-                            max-width: rem(250);
-                        }
+                    @include desktop-md {
+                        max-width: rem(400);
+                    }
 
-                        @include mobile-xs {
-                            max-width: rem(200);
-                        }
+                    @include tablet-s {
+                        max-width: rem(300);
+                    }
+
+                    @include mobile {
+                        max-width: rem(250);
+                    }
+
+                    &:hover {
+                        transform: scale(1.05) !important;
                     }
                 }
 
+                // Используем CSS transforms для создания естественного разброса
                 &:nth-child(1) {
-                    transform: rotate(-6deg);
+                    transform: rotate(-6deg) translateY(rem(20));
                     z-index: 4;
+                    margin-right: rem(-40);
+
+                    @include mobile {
+                        margin-right: rem(-20);
+                        transform: rotate(-8deg) translateY(rem(10));
+                    }
 
                     @include mobile-xs {
-                        left: rem(-20);
+                        margin-right: 0;
+                        transform: rotate(-6deg);
                     }
                 }
 
                 &:nth-child(2) {
-                    transform: rotate(8deg);
-                    top: rem(130);
-                    left: rem(150);
+                    transform: rotate(8deg) translateY(rem(-30));
                     z-index: 3;
-
-                    @include desktop {
-                        left: rem(200);
-                        top: rem(70);
-                    }
+                    margin-left: rem(-20);
+                    margin-right: rem(-20);
 
                     @include mobile {
-                        left: rem(110);
-                        top: rem(40);
+                        transform: rotate(6deg) translateY(rem(-15));
+                        margin-left: rem(-10);
+                        margin-right: rem(-10);
+                    }
+
+                    @include mobile-xs {
+                        margin-left: 0;
+                        margin-right: 0;
+                        transform: rotate(4deg);
                     }
                 }
 
                 &:nth-child(3) {
-                    transform: rotate(-13deg);
-                    left: rem(100);
-                    top: rem(-70);
+                    transform: rotate(-12deg) translateY(rem(40));
                     z-index: 2;
-
-                    @include desktop {
-                        left: rem(210);
-                    }
+                    margin-left: rem(-40);
 
                     @include mobile {
-                        left: rem(110);
+                        transform: rotate(-10deg) translateY(rem(20));
+                        margin-left: rem(-20);
                     }
 
                     @include mobile-xs {
@@ -302,15 +359,9 @@
                 }
 
                 &:nth-child(4) {
-                    transform: rotate(13deg);
-                    left: rem(180);
-                    top: rem(80);
+                    transform: rotate(10deg) translateY(rem(-10));
                     z-index: 1;
-
-                    @include desktop {
-                        left: rem(400);
-                        top: rem(30);
-                    }
+                    margin-left: rem(-30);
 
                     @include mobile {
                         display: none;
@@ -335,7 +386,7 @@
             }
         }
 
-        @include mobile {
+        @include tablet-s {
             display: none;
         }
     }
@@ -353,6 +404,20 @@
                 display: grid;
                 grid-template-columns: rem(539) auto;
                 gap: rem(95);
+
+                @include laptop {
+                    grid-template-columns: rem(320) auto;
+                    gap: rem(20);
+                }
+
+                @include laptop-s {
+                    grid-template-columns: rem(420) auto;
+                    gap: rem(20);
+                }
+
+                @include tablet-s {
+                    grid-template-columns: rem(300) auto;
+                }
 
                 @include mobile {
                     gap: rem(0);
@@ -443,13 +508,13 @@
             }
 
             .films-list__item-awards {
-                @include mobile {
+                @include laptop-s {
                     display: none;
                 }
             }
 
             .film-awards-mobile {
-                @include mobile-above {
+                @include laptop-s-above {
                     display: none;
                 }
             }
@@ -475,8 +540,7 @@
                     column-gap: rem(46);
 
                     @include desktop {
-                        grid-template-columns: repeat(2, auto);
-                        column-gap: rem(66);
+                        grid-template-columns: repeat(1, max-content);
                     }
 
                     @include mobile {
@@ -552,8 +616,7 @@
             .second-film {
                 display: grid;
                 grid-template-columns: repeat(1, max-content);
-
-                @include desktop {
+                @include mobile {
                     grid-template-columns: repeat(1, auto);
                 }
             }
@@ -576,54 +639,64 @@
             gap: rem(70);
             align-items: center;
 
-            @include mobile {
+            @include tablet {
                 grid-template-columns: 1fr;
-                gap: rem(0);
+                gap: rem(110);
+            }
+
+            @include mobile-s {
+                gap: rem(60);
             }
         }
 
         &-image {
-            align-self: baseline;
+            //align-self: baseline;
+            display: flex;
+            //flex-wrap: wrap;
+            gap: rem(20);
+            //min-height: rem(560);
             position: relative;
-            min-height: rem(560);
 
-            @include mobile-xs {
-                min-height: rem(350);
+            @include mobile-s {
+                align-self: baseline;
             }
 
             .polaroid {
-                img {
-                    max-width: rem(560);
-                    @include mobile {
-                        max-width: rem(400);
-                    }
+                transition: transform 0.3s ease;
 
-                    @include mobile-xs {
-                        max-width: rem(200);
-                    }
+                &:hover {
+                    transform: scale(1.05) !important;
                 }
 
                 &:nth-child(1) {
-                    top: rem(30);
-                    transform: rotate(-4deg);
+                    transform: rotate(-4deg) translateY(rem(30));
+                    z-index: 2;
+                    margin-right: rem(-60);
+
                     @include mobile {
-                        left: rem(-50);
+                        margin-right: rem(-40);
+                        transform: rotate(-6deg) translateY(rem(20));
                     }
+
                     @include mobile-xs {
-                        z-index: 1;
+                        margin-right: rem(-20);
+                        transform: rotate(-4deg) translateY(rem(10));
                     }
                 }
 
                 &:nth-child(2) {
-                    transform: rotate(8deg);
-                    right: 0;
-                    top: rem(150);
+                    transform: rotate(8deg) translateY(rem(80));
+                    z-index: 1;
+                    margin-left: rem(-40);
+
                     @include mobile {
-                        right: rem(-50);
-                        top: rem(80);
+                        transform: rotate(6deg) translateY(rem(50));
+                        margin-left: rem(-30);
                     }
+
                     @include mobile-xs {
-                        z-index: 2;
+                        transform: rotate(4deg) translateY(rem(40));
+                        margin-left: rem(-20);
                     }
                 }
             }

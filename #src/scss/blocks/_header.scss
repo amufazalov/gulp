@@ -62,8 +62,8 @@
 
     @include mobile {
         &__nav {
-            background-color: var(--color-secondary);
-            background-image: url('../images/bg_mobile.jpg');
+            background-color: #e2e2e2;
+            background-image: url('../images/bg_top.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;

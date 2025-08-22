@@ -2,9 +2,13 @@
 
 .polaroid {
   background: #f3f3f3;
-  position: absolute;
   padding: rem(24);
   backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: rem(4);
+  box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.15);
+  
   @include mobile {
     padding: rem(15);
   }
@@ -15,14 +19,32 @@
 }
 
 .polaroid-img {
-  top: 20px;
-  left: 10px;
-  overflow-y: hidden;
+  position: relative;
+  width: 100%;
+  //aspect-ratio: 4/3; // Default aspect ratio for polaroid photos
+  overflow: hidden;
+  border-radius: rem(2);
   
-  @include mobile {
-    top: 0;
-    left: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
+}
+
+// Варианты aspect ratio для разных типов изображений
+.polaroid-img--square {
+  aspect-ratio: 1/1;
+}
+
+.polaroid-img--portrait {
+  aspect-ratio: 3/4;
+}
+
+.polaroid-img--landscape {
+  aspect-ratio: 16/9;
 }
 
 .gloss {
@@ -49,8 +71,8 @@
     @include mobile {
       order: 2;
       margin-top: rem(48);
-      height: rem(350); // Увеличенная высота для перекрывающихся элементов
-      overflow: visible; // Разрешаем видимость за границами
+      height: rem(350);
+      overflow: visible;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -72,99 +94,107 @@
       position: relative;
       width: 100%;
       height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: rem(20);
 
       @include mobile {
-        position: relative;
+        gap: rem(10);
       }
     }
 
     .polaroid {
-      @include mobile {
-        padding: rem(15);
-      }
+      transition: transform 0.3s ease;
 
-      @include mobile-s {
-        padding: rem(10);
+      &:hover {
+        transform: scale(1.05) !important;
       }
 
       &:nth-child(1) {
-        left: 0;
-        top: 5%;
-        transform: rotate(-9deg);
-        img{
-          max-width: rem(510);
+        width: rem(340);
+        transform: rotate(-9deg) translateY(rem(20));
+        z-index: 3;
+        margin-right: rem(-60);
 
-          @include laptop {
-            max-width: rem(400);
-          }
-          @include tablet {
-            max-width: rem(340);
-          }
-          @include mobile-s {
-            max-width: rem(220)!important;
-          }
+        @include laptop {
+          width: rem(300);
+        }
 
-          @include mobile-xs {
-            max-width: rem(185)!important;
-          }
+        @include tablet {
+          width: rem(260);
         }
 
         @include mobile {
-          left: 5%;
-          top: rem(20);
-          transform: rotate(-12deg);
-          z-index: 1;
+          width: rem(200);
+          transform: rotate(-12deg) translateY(rem(10));
+          margin-right: rem(-40);
         }
 
         @include mobile-s {
-          left: 5%;
-          top: rem(-50);
-          transform: rotate(-12deg);
-          z-index: 1;
+          width: rem(180);
+          margin-right: rem(-30);
+        }
+
+        @include mobile-xs {
+          width: rem(160);
+          margin-right: rem(-20);
         }
       }
 
       &:nth-child(2) {
-        left: 45%;
-        top: -23%;
-        transform: rotate(3deg);
-        img{
-          max-width: rem(560);
+        width: rem(380);
+        transform: rotate(3deg) translateY(rem(-40));
+        z-index: 2;
+        margin-left: rem(-40);
+        margin-right: rem(-40);
 
-          @include laptop {
-            max-width: rem(450);
-          }
-          @include tablet {
-            max-width: rem(360);
-          }
+        @include laptop {
+          width: rem(340);
+        }
 
-          @include mobile-s {
-            max-width: rem(220)!important;
-          }
-
-          @include mobile-xs {
-            max-width: rem(210)!important;
-          }
+        @include tablet {
+          width: rem(280);
         }
 
         @include mobile {
-          left: 44%;
-          top: -20%;
-          z-index: 2;
+          width: rem(200);
+          transform: rotate(6deg) translateY(rem(-20));
+          margin-left: rem(-30);
+          margin-right: rem(-30);
         }
 
         @include mobile-s {
-          top: 0;
+          width: rem(180);
+          transform: rotate(4deg) translateY(rem(-10));
+          margin-left: rem(-20);
+          margin-right: rem(-20);
+        }
+
+        @include mobile-xs {
+          width: rem(160);
+          margin-left: rem(-15);
+          margin-right: rem(-15);
         }
       }
 
       &:nth-child(3) {
-        left: 55%;
-        top: 10%;
-        transform: rotate(5deg);
+        width: rem(320);
+        transform: rotate(5deg) translateY(rem(30));
+        z-index: 1;
+        margin-left: rem(-60);
+
+        @include laptop {
+          width: rem(280);
+        }
+
+        @include tablet {
+          width: rem(240);
+        }
         
         @include mobile {
-          display: none; // Скрываем третий элемент на мобильных
+          display: none;
         }
       }
     }
