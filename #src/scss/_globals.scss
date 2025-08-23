@@ -72,7 +72,14 @@ h2,
 }
 
 h3,
-.h3 {}
+.h3 {
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
 
 h4,
 .h4 {}

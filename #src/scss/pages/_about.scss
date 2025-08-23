@@ -76,6 +76,53 @@
         position: relative;
     }
 
+    &__section {
+        min-height: 100vh; //calc(100vh - rem(150) - rem(95)); // Учитываем высоту хедера + отступы
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+
+        &-header {
+            margin-bottom: rem(32);
+
+            @include mobile-xs {
+                margin-bottom: rem(24);
+            }
+        }
+
+        &-title {
+            font-size: rem(48);
+            line-height: rem(46);
+            font-family: 'SenBold', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+
+            @include mobile {
+                font-size: rem(32);
+                line-height: rem(32);
+            }
+
+            @include mobile-xs {
+                font-size: rem(24);
+                line-height: rem(24);
+            }
+        }
+
+        &-divider {
+            margin-top: rem(16);
+            width: 100%;
+            height: rem(2);
+            background-image: url('../images/divider.png');
+            background-repeat: repeat-x;
+
+            @include mobile-xs {
+                margin-top: rem(24);
+            }
+        }
+    }
+
+
     // Quote styles
     &__quote {
         align-items: center;
