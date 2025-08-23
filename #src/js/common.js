@@ -334,3 +334,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализируем поляроид галерею и сохраняем ссылку для возможности изменения настроек
     // window.polaroidGallery = new PolaroidGallery();
 });
+
+@@include('includes/modal.js')
