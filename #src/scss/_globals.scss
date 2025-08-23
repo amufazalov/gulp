@@ -27,22 +27,22 @@ body {
   }
 }
 
+.body-bg-top,
+.body-bg-bottom {
+  background-size: contain;
+  background-color: transparent;
+  background-repeat: repeat-x;
+  width: 100%;
+}
+
 .body-bg-top {
   background-image: url('../images/bg_top.png');
-  background-color: transparent;
-  background-size: contain;
   background-position: top center;
-  background-repeat: no-repeat;
-  width: 100%;
 }
 
 .body-bg-bottom {
   background-image: url('../images/bg_bottom.png');
-  background-color: transparent;
-  background-size: contain;
   background-position: bottom center;
-  background-repeat: no-repeat;
-  width: 100%;
 }
 
 h1,
