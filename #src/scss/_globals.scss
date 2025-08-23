@@ -14,14 +14,14 @@ body {
   background-attachment: fixed; // Фиксируем фон к viewport
   overflow-x: hidden;
   min-height: 100vh; // Обеспечиваем минимальную высоту
-  
+
   @include mobile {
     //background-image: url('../images/bg_mobile.jpg');
     background-attachment: fixed; // Важно для мобильных
     overflow-y: auto; // Разрешаем вертикальный скролл на мобильных
     min-height: 100vh; // Обеспечиваем покрытие всего экрана
   }
-  
+
   @include mobile-above {
     overflow-y: auto; // Блокируем только на десктопе если нужно
   }
@@ -109,4 +109,52 @@ a {
   outline: rem(2) dashed var(--color-primary);
   outline-offset: rem(4);
   transition-duration: 0s !important;
+}
+
+.block-title {
+  &__section {
+    min-height: 100vh; //calc(100vh - rem(150) - rem(95)); // Учитываем высоту хедера + отступы
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+
+    &-header {
+      margin-bottom: rem(32);
+
+      @include mobile-xs {
+        margin-bottom: rem(24);
+      }
+    }
+
+    &-title {
+      font-size: rem(48);
+      line-height: rem(46);
+      font-family: 'SenBold', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+
+      @include mobile {
+        font-size: rem(32);
+        line-height: rem(32);
+      }
+
+      @include mobile-xs {
+        font-size: rem(24);
+        line-height: rem(24);
+      }
+    }
+
+    &-divider {
+      margin-top: rem(16);
+      width: 100%;
+      height: rem(2);
+      background-image: url('../images/divider.png');
+      background-repeat: repeat-x;
+
+      @include mobile-xs {
+        margin-top: rem(24);
+      }
+    }
+  }
 }
