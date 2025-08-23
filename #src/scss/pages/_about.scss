@@ -474,13 +474,8 @@
                 }
 
                 &-role {
-                    font-size: rem(20);
-                    line-height: rem(24);
-                    letter-spacing: rem(5);
-                    text-transform: uppercase;
-                    font-family: 'SenRegular', sans-serif;
-                    font-weight: 400;
-                    color: var(--color-gray);
+                    @include item-label();
+                    
                     margin-bottom: rem(32);
 
                     @include mobile {
@@ -561,13 +556,8 @@
 
                     &-location {
                         display: block;
-                        font-size: rem(20);
-                        line-height: rem(24);
-                        letter-spacing: rem(3);
-                        text-transform: uppercase;
-                        font-family: 'SenRegular', sans-serif;
-                        font-weight: 400;
-                        color: var(--color-gray);
+                        @include item-label();
+
                         @include mobile {
                             font-size: rem(16);
                             line-height: rem(18);

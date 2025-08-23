@@ -15,6 +15,9 @@ body {
   overflow-x: hidden;
   min-height: 100vh; // Обеспечиваем минимальную высоту
 
+  font-size: rem(20);
+  line-height: rem(30);
+
   @include mobile {
     //background-image: url('../images/bg_mobile.jpg');
     background-attachment: fixed; // Важно для мобильных
@@ -112,21 +115,20 @@ a {
   }
 }
 
+p {
+  font-size: rem(20);
+  line-height: rem(30);
+}
+
 :focus-visible {
   outline: rem(2) dashed var(--color-primary);
   outline-offset: rem(4);
   transition-duration: 0s !important;
 }
 
-.block-title {
-  &__section {
-    min-height: 100vh; //calc(100vh - rem(150) - rem(95)); // Учитываем высоту хедера + отступы
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    position: relative;
+.section-block {
 
-    &-header {
+    &__header {
       margin-bottom: rem(32);
 
       @include mobile-xs {
@@ -134,7 +136,7 @@ a {
       }
     }
 
-    &-title {
+    &__title {
       font-size: rem(48);
       line-height: rem(46);
       font-family: 'SenBold', sans-serif;
@@ -152,7 +154,7 @@ a {
       }
     }
 
-    &-divider {
+    &__divider {
       margin-top: rem(16);
       width: 100%;
       height: rem(2);
@@ -163,5 +165,5 @@ a {
         margin-top: rem(24);
       }
     }
-  }
+  
 }

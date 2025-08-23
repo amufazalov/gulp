@@ -35,6 +35,16 @@ $min - минимальный размер текста */
   align-items: center;
 }
 
+@mixin item-label {
+  font-family: 'SenRegular', sans-serif;
+  font-weight: 400;
+  color: var(--color-gray);
+  font-size: rem(20);
+  line-height: rem(24);
+  letter-spacing: rem(1);
+  text-transform: uppercase;
+}
+
 /* Абсолютное центрирование */
 @mixin abs-center {
   position: absolute;
