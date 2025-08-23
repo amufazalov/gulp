@@ -11,6 +11,7 @@
     }
 
     &__info {
+        margin-top: rem(64);
         margin-bottom: rem(164);
         &-header {
             width: 100%;
@@ -178,6 +179,88 @@
         margin-bottom: rem(164);
         &-content {
             margin-top: rem(64);
+            display: flex;
+            flex-direction: column;
+            gap: rem(24);
+         
         }
     }
+
+    .film-cc {
+        &__crew, &__cast {
+            &-title {
+                @include list-title();
+                margin-bottom: rem(32);
+            }
+            &-list {
+                max-width: rem(660);
+                display: flex;
+                justify-content: space-between;
+                &-item {
+                    max-width: rem(390);
+                    display: flex;
+                    flex-direction: column;
+                    gap: rem(12);
+                    &-name {
+                        @include item-label();
+                    }
+                }
+            }
+        }
+        &__cast {
+            align-self: flex-end;
+            &-list {
+                display: flex;
+                gap: rem(24);
+                flex-wrap: wrap;
+                width: 100%;
+                max-width: rem(756);
+                justify-content: space-between;
+                &-item {
+                    width: 100%;
+                    max-width: rem(300);
+                }
+            }
+            &-btn {
+                margin-top: rem(24);
+            }
+        }
+
+        &__gallery { 
+            &-list {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                height: 45vh;
+                gap: rem(24);
+                &-item {
+                    position: relative;
+                    &:first-of-type {
+                        z-index: 3;
+                        margin-top: rem(100);
+                        .polaroid {
+                            min-width: rem(725);
+                            transform: rotate(-10deg);
+                        }
+                    }
+                    &:nth-of-type(2) {
+                        z-index: 1;
+                        margin-top: rem(-180);
+                        .polaroid {
+                            min-width: rem(514);
+                            transform: rotate(-3deg);
+                        }
+                    }
+                    &:last-of-type {
+                        z-index: 2;
+                        .polaroid {
+                            min-width: rem(510);
+                            transform: rotate(10deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 }   

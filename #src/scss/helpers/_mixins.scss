@@ -45,6 +45,15 @@ $min - минимальный размер текста */
   text-transform: uppercase;
 }
 
+@mixin list-title {
+  color: var(--color-primary);
+  font-size: rem(36);
+  line-height: rem(43);
+  font-family: 'SenBold', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 /* Абсолютное центрирование */
 @mixin abs-center {
   position: absolute;
