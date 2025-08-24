@@ -57,7 +57,7 @@
                     <h2 class="h2">Filming "Autumn Memories"</h2>
                   </div>
                   <div class="gallery-page__item-info-button">
-                    <button href="#" class="btn gallery-watch__button">Watch</button>
+                    <button href="#" class="btn gallery-watch__button open-modal" data-modal="first-film-gallery">Watch</button>
                   </div>
                 </div>
               </div>
@@ -105,7 +105,7 @@
                     <h2 class="h2">Filming "Blue Land"</h2>
                   </div>
                   <div class="gallery-page__item-info-button">
-                    <button href="#" class="btn gallery-watch__button">Watch</button>
+                    <button href="#" class="btn gallery-watch__button open-modal" data-modal="second-film-gallery">Watch</button>
                   </div>
                 </div>
               </div>
@@ -119,6 +119,8 @@
     </div>
   </div>
 
+  @@include('includes/films/_film_gallery_modal_1.html')
+  @@include('includes/films/_film_gallery_modal_2.html')
   @@include('includes/_js.html')
 </body>
 
