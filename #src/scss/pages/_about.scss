@@ -7,7 +7,6 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        overflow-x: hidden;
 
         @include desktop-above {
             --container-width: #{rem(2088)};
@@ -17,6 +16,7 @@
         @include desktop {
             --container-width: #{rem(1920)};
             --container-padding-x: #{rem(20)};
+            overflow-x: clip;
         }
 
         @include tablet-s {
