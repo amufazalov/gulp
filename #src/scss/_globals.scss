@@ -36,6 +36,7 @@ body {
   background-color: transparent;
   background-repeat: repeat-x;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .body-bg-top {
@@ -170,4 +171,16 @@ p {
 
 .bg-none {
   background-image: none;
+}
+
+.mb-md {
+  margin-bottom: rem(64);
+  @include laptop-s {
+    margin-bottom: rem(32);
+  }
+}
+
+.double-img {
+  display: flex;
+  gap: rem(8);
 }
