@@ -7,8 +7,22 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        overflow-x: hidden;
+
+        @include desktop-above {
+            --container-width: #{rem(2088)};
+            --container-padding-x: #{rem(20)};
+        }
+
+        @include desktop {
+            --container-width: #{rem(1920)};
+            --container-padding-x: #{rem(20)};
+        }
+
+        @include tablet-s {
+            padding: rem(20);
+        }
     }
+
 
     &__info {
         margin-top: rem(64);
@@ -19,6 +33,12 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                @include mobile-md {
+                    align-items: flex-start;
+                    flex-direction: column;
+                    gap: rem(24);
+                    margin-bottom: rem(24);
+                }
             }
         }
         &-h1 {
@@ -26,16 +46,41 @@
             font-size: rem(80);
             line-height: rem(88);
             font-weight: 700;
+            @include tablet{
+                font-size: rem(64);
+                line-height: rem(72);
+            }
+            @include tablet-s{
+                font-size: rem(48);
+                line-height: rem(50);
+            }
         }
         &-links {
             display: flex;
             gap: rem(24);
+            @include mobile {
+                gap: rem(10);
+            }
+        }
+        &-link-items{
+            display: flex;
+            align-items: center;
+            &-item {
+                min-height: rem(50);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
 
         &-inner {
             display: flex;
             gap: rem(20);
             justify-content: space-between;
+            @include laptop-s{
+                flex-direction: column;
+                gap: rem(48);
+            }
         }
         &-content {
             max-width: rem(772);
@@ -48,6 +93,10 @@
             display: flex;
             gap: rem(24);
             margin-bottom: rem(24);
+
+            @include mobile-md {
+                margin-top: rem(24);
+            }
 
             &-item {
                 display: flex;
@@ -66,6 +115,9 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: rem(12);
+            @include mobile-md {
+                grid-template-columns: repeat(1, 1fr);
+            }
             &-item {
                 display: flex;
                 flex-direction: column;
@@ -87,6 +139,9 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: rem(24);
+            @include mobile {
+                grid-template-columns: repeat(1, 1fr);
+            }
             
             .film-awards {
                 &__label {
@@ -191,11 +246,20 @@
             &-title {
                 @include list-title();
                 margin-bottom: rem(32);
+                @include mobile {
+                    margin-bottom: rem(24);
+                    font-size: rem(24);
+                }
             }
             &-list {
                 max-width: rem(660);
                 display: flex;
                 justify-content: space-between;
+                @include mobile{
+                    max-width: auto;
+                    flex-direction: column;
+                    gap: rem(24);
+                }
                 &-item {
                     max-width: rem(390);
                     display: flex;
@@ -209,6 +273,9 @@
         }
         &__cast {
             align-self: flex-end;
+            @include mobile{
+                align-self: flex-start;
+            }
             &-list {
                 display: flex;
                 gap: rem(24);
@@ -230,24 +297,58 @@
             &-list {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                height: 45vh;
+                height: 65vh;
                 gap: rem(24);
+                @include tablet-s{
+                    align-items: center;
+                }
                 &-item {
                     position: relative;
                     &:first-of-type {
                         z-index: 3;
                         margin-top: rem(100);
+                        @include tablet-s{
+                            margin-top: 0;
+                        }
                         .polaroid {
                             min-width: rem(725);
                             transform: rotate(-10deg);
+                            @include desktop-md{
+                                min-width: rem(614);
+                            }
+                            @include tablet{
+                                margin-top: rem(0);
+                                min-width: rem(450);
+                            }
+                            @include tablet-s{
+                                margin: auto;
+                                min-width: rem(380);
+                            }
+                            @include mobile-s{
+                                min-width: rem(300);
+                            }
                         }
                     }
                     &:nth-of-type(2) {
                         z-index: 1;
                         margin-top: rem(-180);
+                        @include tablet-s{
+                            margin-top: rem(-180);
+                        }
+                        @include mobile-md{
+                            margin-left: rem(-120);
+                        }
                         .polaroid {
                             min-width: rem(514);
                             transform: rotate(-3deg);
+                            @include desktop-md{
+                                margin-top: rem(160);
+                                min-width: rem(414);
+                            }
+                            @include tablet-s{
+                                margin: auto;
+                                min-width: rem(250);
+                            }
                         }
                     }
                     &:last-of-type {
@@ -255,6 +356,15 @@
                         .polaroid {
                             min-width: rem(510);
                             transform: rotate(10deg);
+                            @include desktop-md{
+                                min-width: rem(414);
+                                margin-top: rem(120);
+                                left: rem(-100);
+                            }
+                            @include tablet-s{
+                                min-width: rem(250);
+                                margin-left: rem(-100);
+                            }
                         }
                     }
                 }
